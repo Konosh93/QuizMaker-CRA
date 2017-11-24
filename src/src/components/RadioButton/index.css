@@ -1,0 +1,23 @@
+.radio-button {
+	margin: 0 auto;
+	padding: 0;
+	height: 100%;
+}
+
+.radio-button-outer {
+	position: relative;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    border: 1px solid black;	
+}
+
+.radio-button-inner {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    border-radius: 50%;
+    height: 70%;
+    width: 70%;
+}

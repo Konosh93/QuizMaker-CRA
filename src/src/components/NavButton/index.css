@@ -1,0 +1,27 @@
+.nav-item{
+	width:33.333333%;
+	display: inline-block;
+	height:40px;
+}
+
+.nav-item:last-child > .nav-button {
+    border: none ;
+}
+
+.nav-button {
+	background-color:white;
+	border-right: 1px solid #ECF0F1;
+	text-align: center;
+	line-height: 40px;
+}
+
+.nav-button a, a:visited {
+	color:#909497;
+	text-decoration: none;
+}
+
+.nav-button a:hover, a:active{
+	color:#616A6B;
+	text-decoration: none;
+	font-weight: 700;
+}	

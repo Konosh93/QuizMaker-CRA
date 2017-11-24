@@ -1,0 +1,33 @@
+.quiz-maker {
+ 
+}
+
+
+
+.quiz-maker__title{
+  	width: 745px;
+  	margin: 0 auto;
+  	margin-bottom: 20px;
+  	padding: 20px;
+	background: #FFFFFF;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-radius: 3px;
+}
+
+.quiz-maker__problem {
+  	width: 745px;
+  	margin: 0 auto;
+  	margin-bottom: 20px;
+  	padding: 20px;
+	background: #FFFFFF;
+	text-align: center;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	border-radius: 3px;
+}
+
+.quiz-maker__submit {
+	width: 200px;
+	height: 40px;
+	margin: 0 auto;
+}

@@ -1,0 +1,27 @@
+.quiz-nav-item{
+	width:50%;
+	display: inline-block;
+	height:40px;
+}
+
+.quiz-nav-item:last-child > .quiz-nav-button {
+    border: none ;
+}
+
+.quiz-nav-button {
+	background-color:white;
+	border-right: 1px solid #ECF0F1;
+	text-align: center;
+	line-height: 40px;
+}
+
+.quiz-nav-button a, a:visited {
+	color:#909497;
+	text-decoration: none;
+}
+
+.quiz-nav-button a:hover, a:active{
+	color:#616A6B;
+	text-decoration: none;
+	font-weight: 700;
+}	

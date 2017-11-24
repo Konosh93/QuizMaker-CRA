@@ -1,0 +1,35 @@
+
+
+.login-form {
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+}
+
+.login-form_label {
+
+}
+
+.login-form__text {
+	width: 80%;
+	height: 50px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.login-form__button {
+	width: 60%;
+	height: 50px;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+
+.login-form__toggle {
+
+}
+
+.login-form__toggle:hover {
+	cursor: pointer;
+}
