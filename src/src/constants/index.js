@@ -1,4 +1,5 @@
 export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';
 export const SIGNUP = 'SIGNUP';
 export const BEGIN_AUTH = 'BEGIN_AUTH';
 export const REQUEST_QUIZES = 'REQUEST_QUIZES';

@@ -16,7 +16,6 @@ const validateEmail = email => {
 const handleClick = (e, c, correct) => {
   preventDefault(e);
   const {
-    isFetching,
     isSignup,
     name,
     email,
@@ -26,14 +25,12 @@ const handleClick = (e, c, correct) => {
   const isInvalidEmail = !validateEmail(email);
   const isInvalidPassword = password === '';
 
-  if (isFetching || isInvalidName || isInvalidEmail  || isInvalidPassword) {
-    console.log(isFetching, isInvalidName, isInvalidEmail, isInvalidPassword)
+  if (c.props.isFetching || isInvalidName || isInvalidEmail  || isInvalidPassword) {
     return;
   };
-  c.setState({ isFetching: true });
-  const { login, signup, beginAuth } = c.props;
+  const { login, signup } = c.props;
   if (isSignup) {
-    signup({ name, email, password });
+    signup(name, email, password);
   } else {
     login(email, password);
   }

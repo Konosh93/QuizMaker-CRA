@@ -3,18 +3,21 @@ import { Link } from 'react-router-dom';
 import propTypes from 'prop-types';
 import style from './index.css';
 
-const NavButton = (props) => (
+const NavButton = ({
+  children,
+  uri,
+}) => (
   <div className="nav-item">
     <div className="nav-button">
-      <Link to={props.uri}>
-        <div>{props.text}</div>
+      <Link to={uri}>
+        <div>{children}</div>
       </Link>
     </div>
   </div>
 );
 
 NavButton.propTypes = {
-  text: propTypes.string.isRequired,
+  children: propTypes.node.isRequired,
   uri: propTypes.string.isRequired,
 };
 

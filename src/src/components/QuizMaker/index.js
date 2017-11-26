@@ -8,57 +8,6 @@ import Button from '../Button';
 import * as actions from '../../actions';
 import * as utils from '../../utils';
 
-const mapStateToProps = state => {
-  const store = state.get('quiz')
-  const quizlist = store ? store.quizlist : {};
-  const currQuizId = store.currentQuiz || 'new-quiz';
-  const quizes = store.quizes || {};
-  const currQuiz = quizes[currQuizId] || {};
-  const title = currQuiz.title || '';
-  const problems = currQuiz.problems || {};
-  const currProblemId = currQuiz.currentProblem || 0;
-  const currProblem = problems[currProblemId] || {};
-  const question = currProblem.question || {};
-  const choices =  currProblem.choices || {};
-  const correct = currProblem.correct || 'none';
-  return {
-    store,
-    quizlist,
-    currQuizId,
-    quizes,
-    currQuiz,
-    title,
-    problems,
-    currProblemId,
-    currProblem,
-    question,
-    choices,
-    correct,
-  }
-}
-
-
-const mapDispatchToProps = dispatch => (
-  {
-    requestQuizes: () => dispatch(actions.requestQuizes()),
-    receiveQuizes: quizlist => dispatch(actions.receiveQuizes(quizlist)),
-    selectQuiz: quiz => dispatch(actions.selectQuiz(quiz)),
-    addQuiz: (quiz, data) => dispatch(actions.addQuiz(quiz, data)),
-    submitQuiz: quiz => dispatch(actions.submitQuiz(quiz)),
-    invalidate: quiz => dispatch(actions.invalidate(quiz)),
-    permitEdit: quiz => dispatch(actions.permitEdit(quiz)),
-    setTitle: (quiz, title) => dispatch(actions.setTitle(quiz, title)),
-    addProblem: (quiz) => dispatch(actions.addProblem(quiz)),
-    removeProblem: (quiz, problem) => dispatch(actions.removeProblem(quiz, problem)),
-    setCurrentProblem: (quiz, problem) => dispatch(actions.setCurrentProblem(quiz, problem)),
-    addChoice: (quiz, problem) => dispatch(actions.addChoice(quiz, problem)),
-    removeChoice: (quiz, problem, choice) => dispatch(actions.removeChoice(quiz, problem, choice)),
-    setCorrect: (quiz, problem, correctChoice) => dispatch(actions.setCorrect(quiz, problem, correctChoice)),
-    setQuestionText: (quiz, problem, questionText) => dispatch(actions.setQuestionText(quiz, problem, questionText)),
-    editChoiceText: (quiz, problem, choice, choiceText) => dispatch(actions.editChoiceText(quiz, problem, choice, choiceText)),
-  }
-);
-
 class QuizMaker extends React.Component {
   constructor() {
     super();
@@ -86,9 +35,8 @@ class QuizMaker extends React.Component {
 
   submitQuiz(e) {
     e.preventDefault();
-    console.log(this.props.currQuiz)
     const transformedQuiz = utils.quizTransformer({ [this.props.currQuizId]: this.props.currQuiz});
-    this.props.submitQuiz({ [this.props.currQuizId]: transformedQuiz})
+    this.props.submitQuiz(transformedQuiz)
   }
 
   setTitle(e) {
@@ -160,35 +108,26 @@ class QuizMaker extends React.Component {
 
             />
         </div>
-        <div className="quiz-maker__submit">
-          <Button text="Submit quiz" handleClick={this.submitQuiz} />
+        <Button
+          handleClick={this.submitQuiz}
+          className="quiz-maker__button-submit"
+        >Submit Quiz
+        </Button>
         </div>
-      </div>
     );
   }
 }
 
 QuizMaker.propTypes = {
-  store: propTypes.object.isRequired,
-  quizlist: propTypes.object.isRequired,
   currQuizId: propTypes.string.isRequired,
-  quizes: propTypes.object.isRequired,
   currQuiz: propTypes.object.isRequired,
   title: propTypes.string.isRequired,
-  problems: propTypes.object.isRequired,
   currProblemId: propTypes.number.isRequired,
-  currProblem: propTypes.object.isRequired,
   question: propTypes.object.isRequired,
   choices: propTypes.object.isRequired,
   correct: propTypes.string.isRequired,
-  match: propTypes.object,
-  requestQuizes: propTypes.func.isRequired,
-  receiveQuizes: propTypes.func.isRequired,
   selectQuiz: propTypes.func.isRequired,
-  addQuiz: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,
-  invalidate: propTypes.func.isRequired,
-  permitEdit: propTypes.func.isRequired,
   setTitle: propTypes.func.isRequired,
   addProblem: propTypes.func.isRequired,
   removeProblem: propTypes.func.isRequired,
@@ -199,4 +138,4 @@ QuizMaker.propTypes = {
   setQuestionText: propTypes.func.isRequired,
   editChoiceText: propTypes.func.isRequired,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(QuizMaker);
+export default QuizMaker;

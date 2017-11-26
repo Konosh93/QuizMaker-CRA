@@ -33,10 +33,7 @@ class App extends React.Component {
     let scale = this.state.w / this.state.h;
     scale = scale <= 1 ? scale : 1;
     return (
-      <div
-        className="app"
-        style={{ transform: `scale(${scale})` }}
-      >
+      <div className="container">
         <Routes {...this.props} />
       </div>
     );
@@ -44,7 +41,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.get('user'),
+  user: state.get('auth').user,
 });
 
 export default connect(mapStateToProps)(App);

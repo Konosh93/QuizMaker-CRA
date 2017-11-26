@@ -1,43 +1,38 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Choice from '../Choice';
+import QuizTakerChoice from '../QuizTakerChoice';
 import style from './index.css';
 
 
-const Choices = ({
+const QuizTakerChoices = ({
   setCorrect,
-  removeChoice,
   choices,
   correct,
-  editChoiceText,
+  className,
 }) => {
   const keys = choices ? Object.keys(choices) : null;
   const choiceElements = keys ? keys.map(k => (
-    <div key={k} className="choices__choice">
-      <Choice
+    <div key={k} className={`choices__choice ${className}`}>
+      <QuizTakerChoice
         setCorrect={setCorrect}
         answer={{id: k, text: choices[k].text}}
         correct={correct}
-        editChoiceText={editChoiceText}
-        removeChoice={removeChoice}
       />
     </div>
   )) : null;
   return (
     <div className="choices">
       { choiceElements }
-
     </div>
   );
 };
 
-Choices.propTypes = {
+QuizTakerChoices.propTypes = {
 
   setCorrect: propTypes.func.isRequired,
-  removeChoice: propTypes.func.isRequired,
   choices: propTypes.object.isRequired,
   correct: propTypes.string.isRequired,
-  editChoiceText: propTypes.func.isRequired,
+  className: propTypes.string.isRequired,
 };
 
-export default Choices;
+export default QuizTakerChoices;

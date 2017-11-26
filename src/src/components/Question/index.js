@@ -6,8 +6,9 @@ import style from './index.css';
 const Question = ({
   setQuestionText,
   question,
+  className,
 }) => (
-  <div className="question">
+  <div className={`question ${className}`}>
     <TextInput
       type="text"
       name="question"
@@ -21,6 +22,7 @@ const Question = ({
 Question.propTypes = {
   setQuestionText: propTypes.func.isRequired,
   question: propTypes.object.isRequired,
+  className: propTypes.string,
 };
 
 export default Question;

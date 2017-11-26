@@ -2,6 +2,9 @@ import React from 'react';
 import propTypes from 'prop-types';
 import TextInput from '../TextInput';
 import RadioButton from '../RadioButton';
+import Popover from '../Popover';
+import ChoicePopoverTrigger from '../ChoicePopoverTrigger';
+import ChoicePopoverPanel from '../ChoicePopoverPanel';
 import style from './index.css';
 
 const Choice = ({
@@ -17,9 +20,6 @@ const Choice = ({
   } 
   return (
     <div className="choice">
-      <div className="choice__radio">
-        <RadioButton handleClick={(e) => { setCorrect(e, answer.id, answer.text); }} selected={selected} />
-      </div>
       <div className="choice__answer">
         <TextInput
           type="text"
@@ -29,7 +29,16 @@ const Choice = ({
           handleChange={(e)=> {editChoiceText(e, answer.id)}}
         />
       </div>
-      <div className="choice__delete" onClick={(e) => {removeChoice(e, answer.id)}}>Delete</div>
+      <Popover className="choice__popover">
+        <ChoicePopoverTrigger className="choice__choice-popover-trigger"/>
+        <ChoicePopoverPanel 
+          className="choice__choice-popover-panel"
+          removeChoice={removeChoice}
+          setCorrect={setCorrect}
+          answer={answer}
+        />
+      </Popover>
+      
     </div>
   );
 };

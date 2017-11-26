@@ -1,0 +1,25 @@
+.popover {
+  position: relative;
+}
+
+.popover__trigger {
+  outline: 0;
+}
+
+.popover__trigger :hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.popover__panel {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 50px;
+  margin-top: 4px;
+  z-index: 501;
+}
+
+
+
+

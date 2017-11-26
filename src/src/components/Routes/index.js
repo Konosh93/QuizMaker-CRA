@@ -12,12 +12,15 @@ import Quiz from '../../components/Quiz';
 import Profile from '../../components/Profile';
 import Auth from '../../components/Auth';
 
-const Routes = props => {
+const Routes = ({
+  user,
+  dispatch,
+}) => {
   return (
     <Router>
-      <div className="wrapper">
-        <Navigation />
-        <div className="routes">
+      <div className="routes">
+        <Navigation user={user} className="routes__navigation"/>
+        <div className="routes__items">
           <Route exact path="/" component={withRouter(Home)} />
           <Route path="/quiz" component={withRouter(Quiz)} />
           <Route exact path="/profile" component={withRouter(Profile)} />
@@ -29,8 +32,9 @@ const Routes = props => {
 };
 
 
-//Routes.propTypes = {
-//  scale: propTypes.number.isRequired,
-//};
+Routes.propTypes = {
+  user: propTypes.object,
+  dispatch: propTypes.func.isRequired,
+};
 
 export default Routes;

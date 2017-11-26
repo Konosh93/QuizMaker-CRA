@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
-.app {
+.container {
 	margin: 0 auto;
 	font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+	width: 1170px;
 }

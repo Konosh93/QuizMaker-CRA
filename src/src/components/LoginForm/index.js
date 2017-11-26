@@ -12,10 +12,11 @@ const LoginForm = props => {
     handleChange,
     handleClick,
     toggleAction,
-    user
+    user,
+    message
   } = props;
-  const label = data.isSignup ? 'Sign up with your email' : 'Login with your email';
-  const message = user? `You are currently logged in as ${user.name}`: label;
+  const label = data.isSignup ? message + ' Sign up with your email' : message + ' Login with your email';
+  const header = user? `You are currently logged in as ${user.name}`: label;
   const buttonText = data.isSignup ? 'SIGNUP' : 'LOGIN';
   const toggleText = data.isSignup ? 'Already a member? login' : 'Not registered yet? signup';
   const nameField = data.isSignup ? (
@@ -34,7 +35,7 @@ const LoginForm = props => {
     <div className="login-form">
       <div className="login-form__box">
         <div className="login-form__label">
-          <span>{message}</span>
+          <span>{header}</span>
         </div>
         <Form>
           {nameField}
@@ -56,19 +57,12 @@ const LoginForm = props => {
               handleChange={handleChange}
             />
           </div>
-          <div className="login-form__button">
             <Button
+              className="login-form__button"
               handleClick={handleClick}
-              text={buttonText}
-            />
-          </div>
+            >{buttonText}
+            </Button>
           <hr />
-          <div className="login-form__button">
-            <Button
-              handleClick={handleClick}
-              text="Login with Facebook"
-            />
-          </div>
           <div className="login-form__toggle">
             <span onClick={toggleAction}>{toggleText}</span>
           </div>
@@ -87,6 +81,7 @@ LoginForm.propTypes = {
     isSignup: propTypes.bool.isRequired,
   }),
   handleChange: propTypes.func.isRequired,
+  message: propTypes.string,
   handleClick: propTypes.func.isRequired,
   toggleAction: propTypes.func.isRequired,
 };

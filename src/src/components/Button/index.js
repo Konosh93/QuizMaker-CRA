@@ -6,21 +6,23 @@ import style from './index.css';
 const Button = props => {
   const {
     handleClick,
-    text,
+    children,
+    className,
+    role,
   } = props;
 
   return (
-    <div className="btn">
-      <button onClick={handleClick}>
-        { text }
-      </button>
+    <div className={`button ${className}`} onClick={handleClick} role={role || 'button'}>
+      { children }
     </div>
   );
 };
 
 Button.propTypes = {
   handleClick: propTypes.func.isRequired,
-  text: propTypes.string,
+  children: propTypes.node,
+  className: propTypes.string.isRequired,
+  role: propTypes.string,
 };
 
 export default Button;

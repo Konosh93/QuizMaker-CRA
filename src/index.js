@@ -14,6 +14,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './src/store';
 import App from './src/containers';
+import 'font-awesome/css/font-awesome.min.css';
 
 
 render(

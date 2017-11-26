@@ -1,24 +1,9 @@
 .problem {
-	width: 100%;
-	height:100%;
-	margin: 0;
-	padding:0;
 }
 
 .problem__nav {
-  width: 400px;
-  margin: 0 auto;
-  height: 40px;
+  width: 100%;
+  height: 60px;
 }
 
-.problem__nav__previous {
-	width: 150px;
-	height: 100%;
-	float: left;
-}
 
-.problem__nav__next {
-	width: 150px;
-	height: 100%;
-	float: right;
-}

@@ -1,28 +1,11 @@
 import Cookies from 'universal-cookie';
 import agent from '../agent';
 
-const fetchGeneralQuizes = () => ({
-  type: 'FETCH_QUIZES',
-  payload: agent.quizes.fetch(),
-});
-
 export const setTokenCookie = token => {
   const cookies = new Cookies();
   cookies.set('token', token, { path: '/', maxAge: 86400 });
 };
 
-const submitQuiz = quiz => (getState, dispatch) => {
-  dispatch({
-    type: 'SUBMIT_QUIZ',
-    payload: agent.quizes.submit(quiz),
-  });
-};
-
-const fetchQuizes = user => (getState, dispatch) => {
-  if (!user) {
-    dispatch(fetchGeneralQuizes());
-  }
-};
 
 const isPlainObject = obj => (typeof obj === 'object' && !Array.isArray(obj));
 const hasSingleProperty = obj => Object.keys(obj).length === 1;
@@ -40,7 +23,7 @@ export const quizTransformer = quiz => {
   if (!hasSingleProperty(quiz)) {
     throw new Error('invalid object properties');
   }
-  var quizId = Object.keys(quiz)[0];
+  var id = Object.keys(quiz)[0];
   var _quiz = getSolePropertyfromObject(quiz);
   if (!_quiz.title || !_quiz.problems) {
     throw new Error('required fields not found');
@@ -60,7 +43,7 @@ export const quizTransformer = quiz => {
       correct: p.correct,
     }
   });
-  var _quiz = Object.assign({}, { title: _quiz.title, problems: _problems })
+  var _quiz = Object.assign({}, { id, title: _quiz.title, problems: _problems })
   console.log(JSON.stringify(_quiz));
   return _quiz;
 }

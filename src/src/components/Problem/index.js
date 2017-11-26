@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import style from './index.css';
 import ProblemForm from '../ProblemForm';
-import Button from '../Button';
+import ProblemNav from '../ProblemNav';
 
 const Problem = ({
   setCorrect,
@@ -30,20 +30,11 @@ const Problem = ({
         choices={choices}
         correct={correct}
       />
-      <div className="problem__nav">
-        <div className="problem__nav__previous">
-          <Button
-            text="Previous Problem"
-            handleClick={moveToPreviousProblem}
-          />
-        </div>
-        <div className="problem__nav__next">
-          <Button
-            text=" Next Problem"
-            handleClick={moveToNextProblem}
-          />
-        </div>
-      </div>
+      <ProblemNav 
+        className="problem__nav"
+        moveToNext={moveToNextProblem}
+        moveToPrevious={moveToPreviousProblem}
+      />
     </div>
   );
 }

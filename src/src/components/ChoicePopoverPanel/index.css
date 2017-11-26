@@ -1,0 +1,16 @@
+.choice-popover-panel {
+ margin-top: 10px;
+}
+
+.choice-popover-panel__button {
+	width:120px;
+	background-color: #ff4d4d; /*red warning*/
+	color:white;
+	border-bottom: 1px solid white;
+	text-align: center;
+}
+
+.choice-popover-panel__button--set-correct {
+	background-color: #3CB371; /*green*/
+	border-bottom: none;
+}

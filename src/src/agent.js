@@ -8,6 +8,7 @@ const API_ROOT = 'http://localhost:3001';
 // const encode = encodeURIComponent;
 
 const responseBody = res => res.body;
+const errResponseBody = err => err.response.body;
 
 let token = null;
 
@@ -19,13 +20,13 @@ const tokenPlugin = req => {
 
 const requests = {
   del: url => (
-    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)),
+    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).end().then(responseBody, errResponseBody)),
   get: url => (
-    superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).then(responseBody)),
+    superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).end().then(responseBody, errResponseBody)),
   put: (url, body) => (
-    superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)),
+    superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).end().then(responseBody, errResponseBody)),
   post: (url, body) => (
-    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).then(responseBody)),
+    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).end().then(responseBody, errResponseBody)),
 };
 
 
@@ -50,5 +51,5 @@ const quizes = {
 export default {
   accounts,
   quizes,
-  setToken: _token => { token = _token;console.log(token) },
+  setToken: _token => { token = _token},
 };

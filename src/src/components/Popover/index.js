@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import style from './index.less';
+import style from './index.css';
 import PopoverPanel from '../PopoverPanel';
-import PopoverTrigger from '../PopoverTrigger';
+
 
 const defaultProps = {
   className: '',

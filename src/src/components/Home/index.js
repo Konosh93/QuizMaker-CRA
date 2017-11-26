@@ -3,7 +3,7 @@ import style from './index.less';
 
 
 const Home = () => (
-  <div className={style.home}>
+  <div >
     This is home!
   </div>
 );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import style from './index.less';
+import style from './index.css';
 
 
 const propTypes = {
@@ -27,7 +27,7 @@ class PopoverPanel extends Component {
     const { target } = e;
     const { tagName } = target;
     const role = target.getAttribute('role');
-
+    console.log(target);
     const outsideClick = !this.node.contains(target);
     const targetIsButton = role === 'button';
     const targetIsLink = role === 'link' || tagName === 'A';
