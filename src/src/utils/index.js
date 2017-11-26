@@ -16,6 +16,12 @@ const convertObjectToArray = obj => {
   return arr;
 }
 
+const convertArrytoObject = arr => {
+  let obj = {};
+  arr.forEach( v => obj[v.id]=v);
+  return obj
+}
+
 export const quizTransformer = quiz => {
   if (!isPlainObject(quiz)) {
     throw new Error('quiz must be plain javascript object');
@@ -44,6 +50,37 @@ export const quizTransformer = quiz => {
     }
   });
   var _quiz = Object.assign({}, { id, title: _quiz.title, problems: _problems })
+  console.log(JSON.stringify(_quiz));
+  return _quiz;
+}
+
+
+
+
+
+
+export const inverseQuizTransformer = quiz => {
+  console.log(quiz)
+  var id = quiz._id;
+  if (!quiz.title || !quiz.problems) {
+    throw new Error('required fields not found');
+  }
+  if (typeof quiz.title !== 'string' || !Array.isArray(quiz.problems)) {
+    throw new Error('provided data is invalid');
+  }
+  var _problems = quiz.problems.map(p => {
+    if (!p.question || !p.choices) {
+      return p;
+    }
+    return { 
+      id: p.id,
+      question: p.question,
+      choices: convertArrytoObject(p.choices),
+      correct: p.correct,
+    }
+  });
+  var _problemsObject = convertArrytoObject(_problems);
+  var _quiz = Object.assign({}, { id, title: quiz.title, problems: _problemsObject })
   console.log(JSON.stringify(_quiz));
   return _quiz;
 }

@@ -48,6 +48,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => (
   {
     requestQuizes: () => dispatch(actions.requestQuizes()),
+    fetchQuizes: () => dispatch(actions.fetchQuizes()),
     receiveQuizes: quizlist => dispatch(actions.receiveQuizes(quizlist)),
     selectQuiz: quiz => dispatch(actions.selectQuiz(quiz)),
     addQuiz: (quiz, data) => dispatch(actions.addQuiz(quiz, data)),
@@ -113,7 +114,7 @@ const Quiz = props => {
   return (
       <div className="quiz">
         <QuizNavigation match={props.match}/>
-          <QuizList selectQuiz={props.selectQuiz} quizes={props.quizes}/>
+          <QuizList selectQuiz={props.selectQuiz} quizes={props.quizes} fetchQuizes={props.fetchQuizes}/>
           <Route 
             exact path={`${props.match.url}/make`} 
             render={othoerProps => <QuizMaker { ...othoerProps} { ...quizMakerProps}/>}

@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie';
 import agent from '../agent';
 import * as types from '../constants';
+import * as utils from '../utils';
 
 export const recallUser = () => dispatch => {
   const cookies = new Cookies();
@@ -178,6 +179,14 @@ export const syncQuiz = (oldQuizId, newQuizId) =>  ({
     newQuizId,
   }
 });
+
+export const transformThenAdd = servedQuizes => dispatch => {
+  for (var q of servedQuizes) {
+    var quiz = utils.inverseQuizTransformer(q);
+    dispatch(addQuiz(quiz.id, { title: quiz.title, problems: quiz.problems}));
+  }
+}
+
 export const editChoiceText = (quiz, problem, choice, choiceText) => ({
   type: types.EDIT_CHOICE_TEXT,
   payload: {
@@ -187,18 +196,18 @@ export const editChoiceText = (quiz, problem, choice, choiceText) => ({
     choiceText,
   }
 });
-/*
+/* actual */
 export const fetchQuizes = () => dispatch => {
   dispatch(requestQuizes());
-  return agent.fetchQuizes().then( res => res.json()).then(json => dispatch(receiveQuizes(json.quizlist)));
+  return agent.quizes.fetchQuizes().then( quizes => dispatch(transformThenAdd(quizes)));
 }
-*/
+/*
 //testing
 export const fetchQuizes = () => dispatch => {
   dispatch(requestQuizes());
   return fetch('www.omeryourock.com').then( res => res.json()).then(json => dispatch(receiveQuizes(json.quizlist)));
 }
-
+*/
 
 
 export const submitQuiz = quiz => dispatch => {

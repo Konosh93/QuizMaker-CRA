@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom';
 const QuizList = ({
   quizes,
   selectQuiz, 
+  fetchQuizes,
 }) => {
   const keys = Object.keys(quizes);
   const quizlist = keys.map(id => <Link key={id} to="/quiz/take"><Button  
@@ -18,6 +19,7 @@ const QuizList = ({
   return (
     <div>
       {quizlist}
+      <div onClick={fetchQuizes}>FETCH QUIZES</div>
     </div>
   );
 }

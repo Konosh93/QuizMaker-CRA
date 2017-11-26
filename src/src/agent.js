@@ -42,7 +42,7 @@ const accounts = {
 const quizes = {
   getQuiz: (id) => (
     requests.get('/api/quizes', { id })),
-  getQuizList: () => (
+  fetchQuizes: () => (
     requests.get('/api/quizes')),
   submitQuiz: (quiz) => (
     requests.post('/api/quizes', { quiz })),
