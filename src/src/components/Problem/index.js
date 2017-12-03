@@ -8,8 +8,8 @@ const Problem = ({
   setCorrect,
   addChoice,
   removeChoice,
-  setQuestionText,
-  editChoiceText,
+  setQuestion,
+  setChoice,
   no,
   question,
   choices,
@@ -22,8 +22,8 @@ const Problem = ({
     Problem no {no}
       <ProblemForm
         setCorrect={setCorrect}
-        setQuestionText={setQuestionText}
-        editChoiceText={editChoiceText}
+        setQuestion={setQuestion}
+        setChoice={setChoice}
         addChoice={addChoice}
         removeChoice={removeChoice}
         question={question}
@@ -44,13 +44,13 @@ Problem.propTypes = {
   setCorrect: propTypes.func.isRequired,
   addChoice: propTypes.func.isRequired,
   removeChoice: propTypes.func.isRequired,
-  setQuestionText: propTypes.func.isRequired,
-  editChoiceText: propTypes.func.isRequired,
+  setQuestion: propTypes.func.isRequired,
+  setChoice: propTypes.func.isRequired,
   moveToNextProblem: propTypes.func.isRequired,
   moveToPreviousProblem: propTypes.func.isRequired,
   no: propTypes.number.isRequired,
   question: propTypes.object.isRequired,
-  choices: propTypes.object.isRequired,
-  correct: propTypes.string.isRequired,
+  choices: propTypes.object,
+  correct: propTypes.string,
 };
 export default Problem;

@@ -1,86 +1,86 @@
 import Cookies from 'universal-cookie';
+import { convertToRaw, convertFromRaw, EditorState, ContentState } from 'draft-js';
 import agent from '../agent';
-
-export const setTokenCookie = token => {
   const cookies = new Cookies();
-  cookies.set('token', token, { path: '/', maxAge: 86400 });
-};
 
+export const tokenAuth = {
+  set:  (name, value, options) => cookies.set(name, value, options),
+  get:  name => cookies.get(name),
+  remove:  name => cookies.remove(name),
+}
 
 const isPlainObject = obj => (typeof obj === 'object' && !Array.isArray(obj));
 const hasSingleProperty = obj => Object.keys(obj).length === 1;
 const getSolePropertyfromObject = obj => obj[Object.keys(obj)[0]];
+const convertChoicesToArrayOfRaw = choices => {
+  let _choices = convertObjectToArray(choices);
+  _choices = _choices.map(c => ({
+    id: c.id,
+    choice: convertToRaw(c.choice.getCurrentContent()),
+  }))
+  return _choices;
+}
+
+const convertChoicesFromArrayOfRaw = choices => {
+  let _choices = choices.map(c => ({
+    id: c.id,
+    choice: createEditorState(c.choice),
+  }))
+  _choices = convertArrayToObject(_choices);
+  return _choices;
+}
+
 const convertObjectToArray = obj => {
   let keys = Object.keys(obj);
   const arr = keys.map(k => ( Object.assign(obj[k], {id: k})));
   return arr;
 }
 
-const convertArrytoObject = arr => {
+const convertArrayToObject = arr => {
   let obj = {};
   arr.forEach( v => obj[v.id]=v);
   return obj
 }
 
-export const quizTransformer = quiz => {
-  if (!isPlainObject(quiz)) {
-    throw new Error('quiz must be plain javascript object');
-  }
-  if (!hasSingleProperty(quiz)) {
-    throw new Error('invalid object properties');
-  }
-  var id = Object.keys(quiz)[0];
-  var _quiz = getSolePropertyfromObject(quiz);
-  if (!_quiz.title || !_quiz.problems) {
-    throw new Error('required fields not found');
-  }
-  if (typeof _quiz.title !== 'string' || !isPlainObject(_quiz.problems)) {
-    throw new Error('provided data is invalid');
-  }
-  var _problems = convertObjectToArray(_quiz.problems)
+export const convertToServerFormat = quiz => {
+  const { _id, title, problems } = quiz;
+  if (!_id || !title || !problems) return;
+  let _problems = convertObjectToArray(problems)
   _problems = _problems.map((p, k) => {
-    if (!p.question || !p.choices) {
-      return ;
-    }
+    if (!p.question || !p.choices)  return ;
     return { 
       id: k,
-      question: p.question,
-      choices: convertObjectToArray(p.choices),
+      question: convertToRaw(p.question.getCurrentContent()),
+      choices: convertChoicesToArrayOfRaw(p.choices),
       correct: p.correct,
     }
-  });
-  var _quiz = Object.assign({}, { id, title: _quiz.title, problems: _problems })
-  console.log(JSON.stringify(_quiz));
-  return _quiz;
+  }); 
+  return { _id, title, problems: _problems };
 }
 
 
 
 
+const createEditorState = raw => {
+  const contentState = convertFromRaw(raw);
+  const editorState = EditorState.createWithContent(contentState);
+  return editorState;
+}
 
 
-export const inverseQuizTransformer = quiz => {
-  console.log(quiz)
-  var id = quiz._id;
-  if (!quiz.title || !quiz.problems) {
-    throw new Error('required fields not found');
-  }
-  if (typeof quiz.title !== 'string' || !Array.isArray(quiz.problems)) {
-    throw new Error('provided data is invalid');
-  }
-  var _problems = quiz.problems.map(p => {
-    if (!p.question || !p.choices) {
-      return p;
-    }
+export const convertToReduxFormat = quiz => {
+  const { _id, title, problems } = quiz;
+  if (!_id || !title || !problems) return;
+  let _problems = problems.map(p => {
+    if (!p.question || !p.choices) return;
     return { 
       id: p.id,
-      question: p.question,
-      choices: convertArrytoObject(p.choices),
+      question: createEditorState(p.question),
+      choices: convertChoicesFromArrayOfRaw(p.choices),
       correct: p.correct,
     }
-  });
-  var _problemsObject = convertArrytoObject(_problems);
-  var _quiz = Object.assign({}, { id, title: quiz.title, problems: _problemsObject })
-  console.log(JSON.stringify(_quiz));
-  return _quiz;
+  }); 
+  _problems = convertArrayToObject(_problems);
+  return { _id, title, problems: _problems }
+
 }

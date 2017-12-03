@@ -7,8 +7,9 @@ const QuizNavigation = ({
 	match
 }) => (
   <div className="quiz-navigation">
-    <QuizNavButton text="Take a quiz" uri={`${match.url}/take`} />
+    <QuizNavButton text="See quizzes list" uri={`${match.url}/list`} />
     <QuizNavButton text="Make a quiz" uri={`${match.url}/make`} />
+    <QuizNavButton text="Drafts" uri={`${match.url}/drafts`} />
   </div>
 );
 

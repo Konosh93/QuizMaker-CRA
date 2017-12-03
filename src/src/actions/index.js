@@ -1,174 +1,156 @@
-import Cookies from 'universal-cookie';
 import agent from '../agent';
 import * as types from '../constants';
 import * as utils from '../utils';
 
-export const recallUser = () => dispatch => {
-  const cookies = new Cookies();
-  const token = cookies.get('token');
-  agent.setToken(token);
-  agent.accounts.recall()
-    .then(res => dispatch(registerUser(res.user, res.errors)));
-}
+export const setSize = (width, height) => ({
+  type: types.RESIZE,
+  payload: {
+    width,
+    height,
+  },
+})
 
 
 export const beginAuth = ()  => ({
   type: types.BEGIN_AUTH,
 });
 
-const registerUser = (user, errors) => {
-  if (user && user.token) {
-    setTokenCookie(user.token);
-  }
-  return {
-    type: types.LOGIN,
-    payload: {
-      user,
-      errors,
-    }    
-  }
+export const login = (email, password) => dispatch => {
+  dispatch(beginAuth());
+  agent.accounts.login(email, password)
+    .then(res => dispatch(setAuthStatus(res.body.user, null)))
+    .catch(err => {
+      if (err.response) {
+        dispatch(setAuthStatus(null, err.response.body.errors))
+      }else{
+        console.log(err);
+      }
+    });
+};
+
+export const recallUser = () => dispatch => {
+  dispatch(beginAuth());
+  const token = utils.tokenAuth.get('token');
+  agent.setToken(token);
+  agent.accounts.recall()
+    .then(res => dispatch(setAuthStatus(res.body.user, null)))
+    .catch(err => {
+      if (err.response) {
+        dispatch(setAuthStatus(null, err.response.body.errors))
+      }else{
+        console.log(err);
+      }
+    });
+}
+
+export const signup = (name, email, password) => dispatch => {
+  dispatch(beginAuth());
+  agent.accounts.signup(name, email, password)
+    .then(res => dispatch(setAuthStatus(res.body.user, null)))
+    .catch(err => {
+      if (err.response) {
+        dispatch(setAuthStatus(null, err.response.body.errors))
+      }else{
+        console.log(err);
+      }
+    });
 };
 
 export const logout = () => {
-  removeTokenCookie();
-
+  utils.tokenAuth.remove('token');
   return{
     type: types.LOGOUT,
   }
 }
 
-export const loginAsync = (email, password) => dispatch => {
-  dispatch(beginAuth());
-  agent.accounts.login(email, password).then(res => dispatch(registerUser(res.user, res.errors)))
-};
-
-export const signupAsync = (name, email, password) => dispatch => {
-  dispatch(beginAuth());
-  agent.accounts.signup(name, email, password).then(res => dispatch(registerUser(res.user, res.errors)))
-};
-
-
-export const setTokenCookie = token => {
-  const cookies = new Cookies();
-  cookies.set('token', token, { path: '/', maxAge: 86400 });
-};
-
-export const removeTokenCookie = () => {
-  const cookies = new Cookies();
-  cookies.remove('token');
-};
-
-export const getTokenCookie = () => {
-  const cookies = new Cookies();
-  return cookies.get('token');
+const setAuthStatus = (user, errors) => {
+  if (user && user.token) {
+    utils.tokenAuth.set('token', user.token, { path: '/', maxAge: 86400 })
+    return {
+      type: types.AUTHENTICATE,
+      payload: { user },   
+    }
+  }
+  return {
+    type: types.AUTHENTICATE,
+    payload: { errors },  
+  }
 };
 
 export const requestQuizes = () => ({
   type: types.REQUEST_QUIZES,
 });
 
-export const receiveQuizes = (quizlist) => ({
-  type: types.RECEIVE_QUIZES,
-  payload: {
-    quizlist,
-  },
-});
-
-export const selectQuiz = (quiz) => ({
+export const selectQuiz = (quizId) => ({
   type: types.SELECT_QUIZ,
   payload: {
-    quiz,
+    quizId,
   }
 });
 
-export const addQuiz = (quiz, quizData) => ({
+export const addQuiz = (quizId, quizData) => ({
   type: types.ADD_QUIZ,
   payload: {
-    quiz,
+    quizId,
     quizData,
   }
 });
 
-export const permitEdit = quiz => ({
+export const permitEdit = () => ({
   type: types.PERMIT_EDIT,
-  payload: {
-    quiz,
-  }
 });
 
-export const setTitle = (quiz, title) => ({
+export const setTitle =  title => ({
   type: types.SET_TITLE,
   payload: {
-    quiz,
     title,
   }
 });
 
-export const invalidate = quiz => ({
+export const invalidate = () => ({
   type: types.INVALIDATE,
-  payload: {
-    quiz,
-  }
 });
 
-export const addProblem = quiz => ({
+export const addProblem = () => ({
   type: types.ADD_PROBLEM,
-  payload: {
-    quiz,
-  }
 });
 
-export const removeProblem = (quiz, problem) => ({
+export const removeProblem = () => ({
   type: types.REMOVE_PROBLEM,
-  payload: {
-    quiz,
-    problem,
-  }
 });
 
-export const setCurrentProblem = (quiz, problem) => ({
+export const setCurrentProblem = ( problemId) => ({
   type: types.SET_CURRENT_PROBLEM,
   payload: {
-    quiz,
-    problem,
+    problemId,
   }
 });
 
 
-export const addChoice = (quiz, problem) => ({
+export const addChoice = () => ({
   type: types.ADD_CHOICE,
-  payload: {
-    quiz,
-    problem,
-  }
 });
 
-export const removeChoice = (quiz, problem, choice) => ({
+export const removeChoice = (choiceId) => ({
   type: types.REMOVE_CHOICE,
   payload: {
-    quiz,
-    problem,
-    choice,
+    choiceId,
   }
 });
 
 
-export const setCorrect = (quiz, problem, correctChoice) => ({
+export const setCorrect = (correctChoiceId) => ({
   type: types.SET_CORRECT,
   payload: {
-    quiz,
-    problem,
-    correctChoice,
+    correctChoiceId,
   }
 });
 
 
-export const setQuestionText = (quiz, problem, questionText) => ({
-  type: types.SET_QUESTION_TEXT,
+export const setQuestion = (editorState) => ({
+  type: types.SET_QUESTION,
   payload: {
-    quiz,
-    problem,
-    questionText,
+    editorState,
   }
 });
 
@@ -181,25 +163,25 @@ export const syncQuiz = (oldQuizId, newQuizId) =>  ({
 });
 
 export const transformThenAdd = servedQuizes => dispatch => {
-  for (var q of servedQuizes) {
-    var quiz = utils.inverseQuizTransformer(q);
-    dispatch(addQuiz(quiz.id, { title: quiz.title, problems: quiz.problems}));
+  for (var q of servedQuizes) { 
+    var quiz = utils.convertToReduxFormat(q);
+    dispatch(addQuiz(quiz._id, { title: quiz.title, problems: quiz.problems}));
   }
 }
 
-export const editChoiceText = (quiz, problem, choice, choiceText) => ({
-  type: types.EDIT_CHOICE_TEXT,
+export const setChoice = (choiceId, editorState) => ({
+  type: types.SET_CHOICE,
   payload: {
-    quiz,
-    problem,
-    choice,
-    choiceText,
+    choiceId,
+    editorState,
   }
 });
 /* actual */
 export const fetchQuizes = () => dispatch => {
   dispatch(requestQuizes());
-  return agent.quizes.fetchQuizes().then( quizes => dispatch(transformThenAdd(quizes)));
+  return agent.quizes.fetchQuizes()
+    .then( res => dispatch(transformThenAdd(res.body.quizes)))
+    .catch( err => console.log(err))
 }
 /*
 //testing
@@ -211,9 +193,12 @@ export const fetchQuizes = () => dispatch => {
 
 
 export const submitQuiz = quiz => dispatch => {
-  const token = getTokenCookie();
+  const token = utils.tokenAuth.get('token');
+  const _quiz = utils.convertToServerFormat(quiz);
   agent.setToken(token);
-  return agent.quizes.submitQuiz(quiz).then( res => dispatch(syncQuiz(quiz.id, res.quiz.id)));
+  return agent.quizes.submitQuiz(_quiz)
+    .then( res => dispatch(syncQuiz('new-quiz', res.body.quiz._id)))
+    .catch( err => console.log(err));
 }
 
 /*

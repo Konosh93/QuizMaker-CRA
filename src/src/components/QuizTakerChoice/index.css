@@ -1,9 +1,9 @@
-.choice {
+.quiz-taker-choice {
 	display: flex;
 	flex-direction: row;
 }
 
-.choice__radio {
+.quiz-taker-choice__radio {
 	order: 1;
 	width: 40px;
 	height: 40px;
@@ -11,22 +11,22 @@
 	margin-right: 10px;
 }
 
-.choice__answer {
+.quiz-taker-choice__answer {
 	order: 2;
 	flex-grow: 1;
 	float: left;
-	height: 40px;
+	min-height: 40px;
 
 }
 
-.choice__popover {
+.quiz-taker-choice__popover {
 	order: 3;
 	flex-grow: 0.1;
 	float: right;
 	height: 40px;
 }
 
-.choice__choice-popover-trigger {
+.quiz-taker-choice__choice-popover-trigger {
 	font-size: 2.5em;
 	height: 100%;
 }

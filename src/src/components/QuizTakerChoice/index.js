@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import TextInput from '../TextInput';
+import TextDisplay from '../TextDisplay';
 import RadioButton from '../RadioButton';
 import style from './index.css';
 
@@ -10,24 +10,26 @@ const QuizTakerChoice = ({
   correct,
 }) => {
   let selected = false;
-  if (correct === answer.id && answer.text) {
+  if (correct === answer.id) {
     selected = true;
   } 
   return (
-    <div className="choice">
-      <div className="choice__radio">
-        <RadioButton handleClick={(e) => { setCorrect(e, answer.id, answer.text); }} selected={selected} />
+    <div className="quiz-taker-choice">
+      <div className="quiz-taker-choice__radio">
+        <RadioButton handleClick={(e) => { setCorrect(e, answer.id, answer.choice); }} selected={selected} />
       </div>
-      <div className="choice__answer">
-        {answer.text}
+      <div className="quiz-taker-choice__answer">
+        <TextDisplay
+          editorState={answer.choice}
+        />
       </div>
     </div>
   );
 };
 
 QuizTakerChoice.propTypes = {
-  answer: propTypes.object.isRequired,
-  correct: propTypes.string.isRequired,
+  answer: propTypes.object,
+  correct: propTypes.string,
   setCorrect: propTypes.func.isRequired,
 };
 

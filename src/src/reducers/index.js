@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux-immutable';
 import auth from './auth';
-import session from './session';
+import device from './device';
 import quiz from './quiz';
 
 const rootReducer = combineReducers({
   auth,
-  session,
+  device,
   quiz,
 });
 

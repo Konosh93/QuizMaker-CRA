@@ -8,10 +8,10 @@ import style from './index.css';
 
 const ProblemForm = ({
   setCorrect,
-  setQuestionText,
+  setQuestion,
   addChoice,
   removeChoice,
-  editChoiceText,
+  setChoice,
   question,
   choices,
   correct,
@@ -19,13 +19,13 @@ const ProblemForm = ({
   <div className="problem-form">
       <Question
         className="problem-form__question"
-        setQuestionText={setQuestionText}
+        setQuestion={setQuestion}
         question={question}
       />
       <Choices
         className="problem-form__choices"
         setCorrect={setCorrect}
-        editChoiceText={editChoiceText}
+        setChoice={setChoice}
         addChoice={addChoice}
         removeChoice={removeChoice}
         choices={choices}
@@ -42,13 +42,13 @@ const ProblemForm = ({
 
 ProblemForm.propTypes = {
   setCorrect: propTypes.func.isRequired,
-  setQuestionText: propTypes.func.isRequired,
+  setQuestion: propTypes.func.isRequired,
   addChoice: propTypes.func.isRequired,
   removeChoice: propTypes.func.isRequired,
-  editChoiceText: propTypes.func.isRequired,
+  setChoice: propTypes.func.isRequired,
   question: propTypes.object.isRequired,
-  choices: propTypes.object.isRequired,
-  correct: propTypes.string.isRequired,
+  choices: propTypes.object,
+  correct: propTypes.string,
 };
 
 export default ProblemForm;

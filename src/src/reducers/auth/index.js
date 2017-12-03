@@ -4,8 +4,7 @@ const initState = { isAuthenticating: false };
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case types.LOGIN:
-    case types.SIGNUP:
+    case types.AUTHENTICATE:
       if (action.payload.errors) {
         return { errors: action.payload.errors, isAuthenticating: false };
       }

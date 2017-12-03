@@ -12,7 +12,7 @@ const propTypes = {
 const ChoicePopoverTrigger = ({
   className,
 }) => <Button 
-        className={`choice-popover-trigger ${className}`}
+        className={`choice-popover-trigger__button ${className}`}
         handleClick={(e) => e.preventDefault()}
       >
         <i className="fa fa-bars" aria-hidden="true" />

@@ -1,26 +1,26 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import TextInput from '../TextInput';
+import TextEditor from '../TextEditor';
 import style from './index.css';
 
 const Question = ({
-  setQuestionText,
+  setQuestion,
   question,
   className,
-}) => (
-  <div className={`question ${className}`}>
-    <TextInput
-      type="text"
-      name="question"
-      value={question.text || ''}
-      placeholder="Enter your question here ..."
-      handleChange={setQuestionText}
-    />
-  </div>
-);
+}) => {
+  return (
+    <div className={`question ${className}`}>
+      <TextEditor
+        editorState={question}
+        placeholder="Enter your question here ..."
+        onChange={setQuestion}
+      />
+    </div>
+)};
 
 Question.propTypes = {
-  setQuestionText: propTypes.func.isRequired,
+  setQuestion: propTypes.func.isRequired,
   question: propTypes.object.isRequired,
   className: propTypes.string,
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import TextInput from '../TextInput';
+import TextEditor from '../TextEditor';
 import RadioButton from '../RadioButton';
 import Popover from '../Popover';
 import ChoicePopoverTrigger from '../ChoicePopoverTrigger';
@@ -11,22 +11,23 @@ const Choice = ({
   setCorrect,
   answer,
   correct,
-  editChoiceText,
+  setChoice,
   removeChoice,
 }) => {
-  let selected = false;
-  if (correct === answer.id && answer.text) {
-    selected = true;
+  let selected = null;
+  if (correct === answer.id && answer.choice) {
+    selected = 'choice__answer--right-answer';
   } 
+  if (!answer.choice) {
+    return null;
+  }
   return (
     <div className="choice">
-      <div className="choice__answer">
-        <TextInput
-          type="text"
-          name={answer.id}
-          value={answer.text || ''}
-          placeholder="Enter answer here ..."
-          handleChange={(e)=> {editChoiceText(e, answer.id)}}
+      <div className={`choice__answer ${selected}`}>
+        <TextEditor
+          editorState={answer.choice}
+          placeHolder={'Enter a choice ...'}
+          onChange={editorState => setChoice(answer.id, editorState)}
         />
       </div>
       <Popover className="choice__popover">
@@ -35,7 +36,7 @@ const Choice = ({
           className="choice__choice-popover-panel"
           removeChoice={removeChoice}
           setCorrect={setCorrect}
-          answer={answer}
+          choiceId={answer.id}
         />
       </Popover>
       
@@ -44,10 +45,10 @@ const Choice = ({
 };
 
 Choice.propTypes = {
-  answer: propTypes.object.isRequired,
-  correct: propTypes.string.isRequired,
+  answer: propTypes.object,
+  correct: propTypes.string,
   setCorrect: propTypes.func.isRequired,
-  editChoiceText: propTypes.func.isRequired,
+  setChoice: propTypes.func.isRequired,
   removeChoice: propTypes.func.isRequired,
 };
 

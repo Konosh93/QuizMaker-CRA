@@ -5,12 +5,10 @@
 .problem-form__question {
 	margin: 0 auto;
 	margin-bottom: 10px;
-	height: 40px; 
 }
 
 .problem-form__choices {
-	width: 70%;
-	margin: 0 auto;
+
 }
 
 .problem-form__button-plus {

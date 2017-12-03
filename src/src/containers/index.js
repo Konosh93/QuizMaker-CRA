@@ -1,26 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import style from './index.css';
-import Routes from '../components/Routes';
-import { recallUser } from '../actions';
+import Root from '../components/Root';
+import { recallUser, setSize } from '../actions';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {
-      w: document.documentElement.clientWidth,
-      h: document.documentElement.clientHeight,
-    };
   }
 
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(recallUser());
+    dispatch(setSize(document.documentElement.clientWidth, document.documentElement.clientHeight));
     window.addEventListener('resize', () => {
-      this.setState({
-        w: document.documentElement.clientWidth,
-        h: document.documentElement.clientHeight,
-      });
+      dispatch(setSize(document.documentElement.clientWidth, document.documentElement.clientHeight));
     });
   }
 
@@ -30,11 +24,9 @@ class App extends React.Component {
 
 
   render() {
-    let scale = this.state.w / this.state.h;
-    scale = scale <= 1 ? scale : 1;
     return (
       <div className="container">
-        <Routes {...this.props} />
+        <Root {...this.props} />
       </div>
     );
   }

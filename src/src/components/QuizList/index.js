@@ -11,15 +11,15 @@ const QuizList = ({
   selectQuiz, 
   fetchQuizes,
 }) => {
-  const keys = Object.keys(quizes);
-  const quizlist = keys.map(id => <Link key={id} to="/quiz/take"><Button  
+  const ids = Object.keys(quizes);
+  const quizlist = ids.map(id => <Link key={id} to="/quiz/take"><Button  
     handleClick={() => selectQuiz(id)}
-    className="quiz-list__item">
+    className="quiz-list__button-select">
     {quizes[id].title}</Button></Link>) 
   return (
-    <div>
-      {quizlist}
-      <div onClick={fetchQuizes}>FETCH QUIZES</div>
+    <div className="quiz-list">
+      <Button handleClick={fetchQuizes} className="quiz-list__button-fetch" >FETCH QUIZES</Button>
+      {quizlist}    
     </div>
   );
 }

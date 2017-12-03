@@ -28,10 +28,8 @@
 }
 
 .quiz-taker__problems-count {
-	width: 400px;
 	margin: 0 auto;
 	margin-bottom: 20px;
-	background-color: blue;
 	font-size: 2em;
 	font-weight: 600;
 }
@@ -41,16 +39,17 @@
 	margin: 10px;
 	margin: 0 auto;
 	margin-bottom: 20px;
-	background-color: grey;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: 600;
+	text-align: left;
 }
 
 .quiz-taker__choices {
 	width: 80%;
 	margin: 0 auto;
-	background-color: red;
 	margin-bottom: 20px;
+	text-align: left;
+	line-height: 40px;
 }
 
 .quiz-taker__navigation {
@@ -59,7 +58,9 @@
 }
 
 
-.quiz-taker__submit {
+.quiz-taker__button.submit {
+	display: block;
+	margin: 0 auto;
 	width: 200px;
 	height: 60px;
 	font-weight: 1000;

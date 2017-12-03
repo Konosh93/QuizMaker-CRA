@@ -6,10 +6,6 @@ const superagent = superagentPromise(_superagent, global.Promise);
 const API_ROOT = 'http://localhost:3001';
 
 // const encode = encodeURIComponent;
-
-const responseBody = res => res.body;
-const errResponseBody = err => err.response.body;
-
 let token = null;
 
 const tokenPlugin = req => {
@@ -20,13 +16,13 @@ const tokenPlugin = req => {
 
 const requests = {
   del: url => (
-    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).end().then(responseBody, errResponseBody)),
+    superagent.del(`${API_ROOT}${url}`).use(tokenPlugin).end()),
   get: url => (
-    superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).end().then(responseBody, errResponseBody)),
+    superagent.get(`${API_ROOT}${url}`).use(tokenPlugin).end()),
   put: (url, body) => (
-    superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).end().then(responseBody, errResponseBody)),
+    superagent.put(`${API_ROOT}${url}`, body).use(tokenPlugin).end()),
   post: (url, body) => (
-    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).end().then(responseBody, errResponseBody)),
+    superagent.post(`${API_ROOT}${url}`, body).use(tokenPlugin).end()),
 };
 
 

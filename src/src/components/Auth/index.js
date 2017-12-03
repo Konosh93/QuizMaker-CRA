@@ -1,24 +1,9 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import { connect } from 'react-redux';
 import LoginForm from '../LoginForm';
 import Button from '../Button';
 import style from './index.css';
-import * as actions from '../../actions';
 import utils from './utils';
-
-const mapStateToProps = state => ({
-  user: state.get('auth').user,
-  errors: state.get('auth').errors || {},
-  isFetching: state.get('auth').isFetching || false,
-});
-
-const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch(actions.loginAsync(email, password)),
-  logout: () =>  dispatch(actions.logout()),
-  signup: (name, email, password) => dispatch(actions.signupAsync(name, email, password)),
-  beginAuth: () => dispatch(actions.beginAuth()),
-});
 
 
 class Auth extends React.Component {
@@ -33,6 +18,7 @@ class Auth extends React.Component {
       email: '',
       password: '',
       isSignup: false,
+      isProgressing:false,
     };
   }
   componentWillReceiveProps(nextProps) {
@@ -62,42 +48,39 @@ class Auth extends React.Component {
   }
 
   render() {
-    const loginForm = (
-      <div className="auth__login-form">
-        <LoginForm
-          user={this.props.user}
-          message={this.props.errors.message}
-          data={{...this.state, isFetching: this.props.isFetching}}
-          handleChange={this.handleChange}
-          handleClick={this.handleClick}
-          toggleAction={this.toggleAction}
-        />
-      </div>      
-    );
-    const logout = (
+
+    const loginFormProps = {
+      user: this.props.user,
+      message: this.props.errors.message || '',
+      data: {...this.state, isFetching: this.props.isFetching},
+      handleChange: this.handleChange,
+      handleClick: this.handleClick,
+      toggleAction: this.toggleAction,
+      width: this.props.width,
+      height: this.props.height,
+    }
+
+    if (!this.props.user) return <LoginForm { ...loginFormProps } />     
+
+    return (
       <Button
         className="auth__logout"
         handleClick={this.logout}
-      ><span>LOGOUT</span>
+      >LOGOUT
       </Button>
-    );
-    return (
-      <div className="auth">
-        {
-          this.props.user? logout: loginForm
-        }
-
-      </div>
     );
   }
 }
 
 Auth.propTypes = {
   user: propTypes.object,
+  errors: propTypes.object,
+  width: propTypes.number.isRequired,
+  height: propTypes.number.isRequired,
   history: propTypes.object.isRequired,
   login: propTypes.func.isRequired,
   signup: propTypes.func.isRequired,
   beginAuth: propTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default Auth;

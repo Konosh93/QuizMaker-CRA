@@ -4,6 +4,7 @@ import style from './index.css';
 import QuizTakerChoices from '../QuizTakerChoices';
 import ProblemNav from '../ProblemNav';
 import Button from '../Button';
+import TextDisplay from '../TextDisplay';
 import * as actions from '../../actions';
 import * as utils from '../../utils';
 
@@ -17,9 +18,9 @@ class QuizTaker extends React.Component {
   }
 
   componentWillMount(){
-    if (!this.props.currQuiz) {
+    if (!this.props.currentQuizId) {
+    	this.props.selectQuiz('new-quiz');
     }
-    this.props.selectQuiz('new-quiz');
   }
 
   componentWillReceiveProps() {
@@ -28,40 +29,50 @@ class QuizTaker extends React.Component {
 
   submitQuiz(e) {
     e.preventDefault();
-    const transformedQuiz = utils.quizTransformer({ [this.props.currQuizId]: this.props.currQuiz});
-    this.props.submitQuiz(transformedQuiz)
   }
 
 
   setCorrect(e, c, t) {
     e.preventDefault();
     if (!t) return;
-    this.props.setCorrect(this.props.currQuizId, this.props.currProblemId, c);
+    this.props.setCorrect(c);
   }
 
 
   moveToNextProblem(e) {
     e.preventDefault();
-    this.props.setCurrentProblem(this.props.currQuizId, this.props.currProblemId+1);
+    this.props.setCurrentProblem(this.props.currProblemId+1);
   }
 
   moveToPreviousProblem(e) {
     e.preventDefault();
-    this.props.setCurrentProblem(this.props.currQuizId, this.props.currProblemId - 1);
+    this.props.setCurrentProblem(this.props.currProblemId - 1);
   }
   render() {
+    const {
+      title,
+      currentProblemId,
+      question,
+      choices,
+      correct,
+    } = this.props;
+    if (!question) {
+      return null;
+    }
     return (
-        <div className="quiz-taker">
-        <div className="quiz-taker__title">{this.props.title}</div>
+      <div className="quiz-taker">
+        <div className="quiz-taker__title">{title}</div>
         <div className="quiz-taker__body">
           <div className="quiz-taker__problem">
-            <div className="quiz-taker__problems-count">{this.props.currentProblem}</div>
-            <div className="quiz-taker__question">{this.props.question.text}</div>
+            <div className="quiz-taker__problems-count">{currentProblemId+1}</div>
+            <TextDisplay 
+              editorState={question}
+            />
             <QuizTakerChoices 
               className="quiz-taker__choices"
-              choices={this.props.choices}
+              choices={choices}
               setCorrect={this.setCorrect}
-              correct={this.props.correct}
+              correct={correct}
             />
           </div>
           <ProblemNav 
@@ -69,11 +80,11 @@ class QuizTaker extends React.Component {
             moveToNext={this.moveToNextProblem}
             moveToPrevious={this.moveToPreviousProblem}
           />
-      </div>
+        </div>
         <Button 
-          className="quiz-taker__submit"
+          className="quiz-taker__button submit"
           handleClick={e => e.preventDefault()}
-        >{"Submit"}</Button>
+        >Submit</Button>
       </div>
     );  	
   }
@@ -81,13 +92,12 @@ class QuizTaker extends React.Component {
 }
 
 QuizTaker.propTypes = {
-  currQuizId: propTypes.string.isRequired,
-  currQuiz: propTypes.object.isRequired,
-  title: propTypes.string.isRequired,
-  currProblemId: propTypes.number.isRequired,
-  question: propTypes.object.isRequired,
-  choices: propTypes.object.isRequired,
-  correct: propTypes.string.isRequired,
+  currentQuizId: propTypes.string,
+  title: propTypes.string,
+  currentProblemId: propTypes.number,
+  question: propTypes.object,
+  choices: propTypes.object,
+  correct: propTypes.string,
   selectQuiz: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,
   setCurrentProblem: propTypes.func.isRequired,

@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import style from './index.less';
-import * as actions from '../../actions';
 import agent from '../../agent';
 
 const mapStateToProps = state => (
@@ -18,10 +17,6 @@ class Profile extends React.Component {
   }
 
   componentWillMount() {
-    if (this.props.auth.user && this.props.auth.user.token) {
-      actions.setTokenCookie(this.props.auth.user.token);
-      agent.setToken(this.props.auth.user.token);
-    }
   }
 
   render() {

@@ -15,7 +15,7 @@ const QuizTakerChoices = ({
     <div key={k} className={`choices__choice ${className}`}>
       <QuizTakerChoice
         setCorrect={setCorrect}
-        answer={{id: k, text: choices[k].text}}
+        answer={{id: k, choice: choices[k].choice}}
         correct={correct}
       />
     </div>
@@ -30,9 +30,9 @@ const QuizTakerChoices = ({
 QuizTakerChoices.propTypes = {
 
   setCorrect: propTypes.func.isRequired,
-  choices: propTypes.object.isRequired,
-  correct: propTypes.string.isRequired,
-  className: propTypes.string.isRequired,
+  choices: propTypes.object,
+  correct: propTypes.string,
+  className: propTypes.string,
 };
 
 export default QuizTakerChoices;

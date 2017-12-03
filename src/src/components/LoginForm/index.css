@@ -1,46 +1,17 @@
 .login-form {
-	
+box-sizing: border-box;
+  border: 1px solid #ddd;
+  padding: 15px 10px 0px 10px;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
 
-.login-form__box {
-	position:absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 90%;
-}
+.login-form--mobile {
 
-.login-form_label {
-
-}
-
-.login-form__text {
-	width: 80%;
-	height: 50px;
-	margin: 0 auto;
-	margin-bottom: 10px;
-}
-
-.login-form__button {
-	width: 50%;
-	height: 40px;
-	margin: 0 auto;
-	margin-bottom: 10px;
-	background-color: #458eff;
-	color: white;
-	font-weight: 500;
-	font-size: 1.5em;
-	line-height: 40px;
-}
-
-.login-form__toggle {
- color: blue;
-}
-
-.login-form__toggle:hover {
- font-weight: 800;
-}
-
-.login-form__toggle:hover {
-	cursor: pointer;
 }
