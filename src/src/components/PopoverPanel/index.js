@@ -26,8 +26,7 @@ class PopoverPanel extends Component {
   onClick(e) {
     const { target } = e;
     const { tagName } = target;
-    const role = target.getAttribute('role');
-    console.log(target);
+    const role = target.getAttribute('role');console.log(target)
     const outsideClick = !this.node.contains(target);
     const targetIsButton = role === 'button';
     const targetIsLink = role === 'link' || tagName === 'A';

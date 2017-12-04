@@ -6,6 +6,7 @@ import * as actions from '../actions';
 
 
 const mapStateToProps = state => {
+  const { width, height } = state.get('device');
   const quiz = state.get('quiz')
   const { currentQuizId, quizes } = quiz || {};
   const currentQuiz = (quizes && currentQuizId) ? quizes[currentQuizId] : null;
@@ -21,6 +22,8 @@ const mapStateToProps = state => {
     question,
     choices,
     correct,
+    width,
+    height,
   }
 }
 
@@ -72,5 +75,7 @@ QuizContainer.propTypes = {
   setCorrect: propTypes.func.isRequired,
   setQuestion: propTypes.func.isRequired,
   setChoice: propTypes.func.isRequired,
+  width: propTypes.number.isRequired,
+  height: propTypes.number.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(QuizContainer);

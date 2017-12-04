@@ -1,25 +1,11 @@
-.quiz-list {
-	width: 745px;
-	height: 100%;
-	margin: 0 auto;
-	padding: 0;
+.quiz-drafts {
 }
 
-.quiz-list__button-select {
+.quiz-drafts__title {
 	list-style: square;
-	display: block;
-	margin-bottom: 5px;
 	text-align: left;
-	line-height: 40px;
 }
 
-.quiz-list__button-fetch {
-	width: 150px;
-	height: 40px;
-	display: block;
-	background-color: black;
-	color: white;
-	margin-bottom: 5px;
-	text-align: center;
+.quiz-list__delete {
 	line-height: 40px;
 }

@@ -13,7 +13,7 @@ const ChoicPopoverPanel = ({
     <Button  className="choice-popover-panel__button" handleClick={(e) => removeChoice(e, choiceId)}>
       <i className="fa fa-times" /> Delete
     </Button>
-    <Button role="button"
+    <Button 
       className="choice-popover-panel__button choice-popover-panel__button--set-correct"  
       handleClick={(e) => setCorrect(e, choiceId)}>
         <i className="fa fa-check" /> Set Correct

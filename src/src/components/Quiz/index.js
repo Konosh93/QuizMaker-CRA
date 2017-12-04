@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   withRouter,
   Route,
+  Switch,
 } from 'react-router-dom';
 import style from './index.css';
 import utils from './utils';
@@ -12,6 +13,7 @@ import QuizTaker from '../QuizTaker';
 import QuizMaker from '../QuizMaker';
 import QuizList from '../QuizList';
 import QuizDrafts from '../QuizDrafts';
+import Positioner from '../Positioner';
 
 const Quiz = props => {
   const quizMakerProps = {
@@ -58,26 +60,32 @@ const Quiz = props => {
     selectQuiz: props.selectQuiz,
     addQuiz: props.addQuiz,
   }
+  const { width, height } = props;
   return (
+    <Positioner width={width} height={height}>
       <div className="quiz">
         <QuizNavigation match={props.match}/>
-          <Route 
-            path={`${props.match.url}/list`} 
-            render={othoerProps => <QuizList { ...othoerProps} { ...quizListProps}/>}
-          />
-          <Route 
-            path={`${props.match.url}/make`} 
-            render={othoerProps => <QuizMaker { ...othoerProps} { ...quizMakerProps}/>}
-          />
-          <Route 
-            path={`${props.match.url}/take`}
-            render={otherProps => <QuizTaker { ...otherProps} { ...quizTakerProps} />}
-          />
-          <Route 
-            path={`${props.match.url}/drafts`}
-            render={otherProps => <QuizDrafts { ...otherProps} { ...quizDraftsProps} />}
-          />
+          <Switch>
+            <Route 
+              path={`${props.match.url}/list`} 
+              render={othoerProps => <QuizList { ...othoerProps} { ...quizListProps}/>}
+            />
+            <Route 
+              path={`${props.match.url}/make`} 
+              render={othoerProps => <QuizMaker { ...othoerProps} { ...quizMakerProps}/>}
+            />
+            <Route 
+              path={`${props.match.url}/take`}
+              render={otherProps => <QuizTaker { ...otherProps} { ...quizTakerProps} />}
+            />
+            <Route 
+              path={`${props.match.url}/drafts`}
+              render={otherProps => <QuizDrafts { ...otherProps} { ...quizDraftsProps} />}
+            />            
+          </Switch>
+
         </div>
+      </Positioner>
   );
 }
 
@@ -106,5 +114,7 @@ Quiz.propTypes = {
   setCorrect: propTypes.func.isRequired,
   setQuestion: propTypes.func.isRequired,
   setChoice: propTypes.func.isRequired,
+  width: propTypes.number.isRequired,
+  height: propTypes.number.isRequired,
 };
 export default Quiz;

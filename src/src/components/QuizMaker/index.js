@@ -41,9 +41,8 @@ class QuizMaker extends React.Component {
     this.props.setTitle(e.target.value)
   }
 
-  setCorrect(e, c, t) {
+  setCorrect(e, c) {
     e.preventDefault();
-    if (!t) return;
     this.props.setCorrect(c);
   }
 
@@ -89,16 +88,16 @@ class QuizMaker extends React.Component {
     if (!question) {
       return (
           <Button className="" handleClick={this.initiateQuiz}>
-            "Make new Quiz"
+            Make new Quiz
           </Button>
       );
     } 
     return (
       <div className="quiz-maker">
+        <Button className="" handleClick={this.initiateQuiz}>
+          Make new Quiz
+        </Button>
         <div className="quiz-maker__title">
-          <Button className="" handleClick={this.initiateQuiz}>
-            "Make new Quiz"
-          </Button>
           <QuizTitleForm
             setTitle={this.setTitle}
             title={this.props.title || ''}

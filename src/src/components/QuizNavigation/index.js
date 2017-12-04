@@ -6,10 +6,10 @@ import QuizNavButton from '../QuizNavButton';
 const QuizNavigation = ({
 	match
 }) => (
-  <div className="quiz-navigation">
-    <QuizNavButton text="See quizzes list" uri={`${match.url}/list`} />
-    <QuizNavButton text="Make a quiz" uri={`${match.url}/make`} />
-    <QuizNavButton text="Drafts" uri={`${match.url}/drafts`} />
+  <div className="quiz-menu">
+    <QuizNavButton text="List" uri={`${match.url}/list`} />
+    <QuizNavButton text="New" uri={`${match.url}/make`} />
+    <QuizNavButton text="Unsaved" uri={`${match.url}/drafts`} />
   </div>
 );
 

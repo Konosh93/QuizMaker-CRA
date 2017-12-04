@@ -1,8 +1,10 @@
 .choice-popover-panel {
+	box-sizing: border-box;
  margin-top: 10px;
 }
 
 .choice-popover-panel__button {
+	box-sizing: border-box;
 	width:120px;
 	background-color: #ff4d4d; /*red warning*/
 	color:white;

@@ -9,6 +9,7 @@
 }
 
 .nav-button {
+	box-sizing: border-box;
 	background-color:white;
 	border-right: 1px solid #ECF0F1;
 	text-align: center;

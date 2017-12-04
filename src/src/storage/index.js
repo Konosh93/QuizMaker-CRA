@@ -24,9 +24,14 @@ export const subscribeQuiz = store => {
 }
 
 export const getQuizDraft = () => {
+  if (!localStorage.getItem(quizStorageKey)) return;
   const quiz = JSON.parse(atob(localStorage.getItem(quizStorageKey)));
   if (!quiz) return;
 
-  const _reduxFormatQuiz = convertToReduxFormat(quiz);  console.log(quiz);
+  const _reduxFormatQuiz = convertToReduxFormat(quiz);
   return { currentQuizId: quiz._id, currentQuiz: _reduxFormatQuiz };
+}
+
+export const removeOneDraft = id => {
+  return localStorage.removeItem(quizStorageKey);
 }

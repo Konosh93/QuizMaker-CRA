@@ -4,6 +4,7 @@ import style from './index.css';
 import Button from '../Button';
 import { getQuizDraft } from '../../storage';
 import {Link} from 'react-router-dom';
+import { removeOneDraft } from '../../storage';
 
 
 
@@ -15,13 +16,19 @@ const QuizDrafts = ({
   const {currentQuizId, currentQuiz} = draft || {};
   if (!currentQuizId || !currentQuiz) return null;
   return (
-    <div className="quiz-list">
+    <div className="quiz-drafts">
       <Link to="/quiz/make">
         <Button  
           handleClick={() => {addQuiz(currentQuizId, currentQuiz);selectQuiz(currentQuizId);}}
-          className="quiz-list__button-select"
+          className="quiz-drafts__title"
         >
           {currentQuiz.title || 'unsaved-draft'}
+        </Button> 
+        <Button  
+          handleClick={() => removeOneDraft(currentQuizId)}
+          className="quiz-drafts__delete"
+        >
+          Delete
         </Button>
       </Link>
     </div>

@@ -1,11 +1,11 @@
 .quiz-maker {
-	width: 745px;
 	margin: 0 auto;
 }
 
 
 
 .quiz-maker__title{
+	box-sizing: border-box;
   	margin-bottom: 20px;
   	padding: 10px;
 	background: #FFFFFF;
@@ -15,6 +15,7 @@
 }
 
 .quiz-maker__problem {
+	box-sizing: border-box;
   	margin-bottom: 20px;
   	padding: 10px;
 	background: #FFFFFF;
@@ -25,7 +26,6 @@
 
 .quiz-maker__button.submit {
 	margin: 0 auto;
-	width: 400px;
 	display: block;
 	height: 60px;
 	font-weight: 1000;

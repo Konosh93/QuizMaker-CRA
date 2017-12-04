@@ -20,7 +20,6 @@ class Profile extends React.Component {
   }
 
   render() {
-    console.log(this.props.auth)
     const name = this.props.auth.user ? this.props.auth.user.name : null;
     const { history } = this.props;
     const message = this.props.auth.isAuthenticating? 'Authenticating ...' : `This is your profile! hi ${name}.`;

@@ -2,5 +2,6 @@
 }
 
 .choices__choice {
+	box-sizing: border-box;
 	margin-bottom: 10px;
 }

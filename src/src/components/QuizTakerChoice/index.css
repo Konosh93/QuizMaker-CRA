@@ -3,6 +3,10 @@
 	flex-direction: row;
 }
 
+.quiz-taker-choice--selected {
+	background-color: green;
+}
+
 .quiz-taker-choice__radio {
 	order: 1;
 	width: 40px;

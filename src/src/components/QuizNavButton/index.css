@@ -1,4 +1,5 @@
 .quiz-nav-item{
+	box-sizing: border-box;
 	width:33.3%;
 	display: inline-block;
 	height:40px;
@@ -9,6 +10,7 @@
 }
 
 .quiz-nav-button {
+
 	background-color:white;
 	border-right: 1px solid #ECF0F1;
 	text-align: center;

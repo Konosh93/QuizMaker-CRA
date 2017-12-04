@@ -3,7 +3,8 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-const API_ROOT = 'http://localhost:3001';
+const API_ROOT= 'http://localhost:3001';
+//const API_ROOT = 'https://murmuring-retreat-29238.herokuapp.com';
 
 // const encode = encodeURIComponent;
 let token = null;
