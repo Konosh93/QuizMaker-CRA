@@ -12,10 +12,10 @@ registerServiceWorker();
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './src/store';
-import App from './src/containers';
+import store from './store';
+import App from './containers';
 import 'font-awesome/css/font-awesome.min.css';
-import { subscribeQuiz } from './src/storage';
+import { subscribeQuiz } from './storage';
 
 
 subscribeQuiz(store);

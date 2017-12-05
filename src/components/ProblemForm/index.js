@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Form from '../Form';
 import Question from '../Question';
 import Choices from '../Choices';
 import Button from '../Button';

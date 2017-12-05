@@ -1,6 +1,5 @@
 import React from 'react';
 import propTypes from 'prop-types';
-import Form from '../Form';
 import TextInput from '../TextInput';
 import style from './index.css';
 
@@ -11,7 +10,6 @@ const QuizTitleForm = props => {
   } = props;
   return (
     <div className="quiz-title-form">
-      <Form>
         <div className="quiz-title-form__input">
           <TextInput
             type="text"
@@ -21,7 +19,6 @@ const QuizTitleForm = props => {
             handleChange={setTitle}
           />
         </div>
-      </Form>
     </div>
   );
 };
