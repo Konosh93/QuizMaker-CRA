@@ -41,13 +41,14 @@ const Quiz = props => {
 
   const quizTakerProps = {
     currentQuizId: props.currentQuizId,
+    currentQuiz: props.currentQuiz,
     title: props.title,
     currentProblemId: props.currentProblemId,
     question: props.question,
     choices: props.choices,
     correct: props.correct,
     selectQuiz: props.selectQuiz,
-    submitQuiz: props.submitQuiz,
+    submitAnswers: props.submitAnswers,
     setCurrentProblem: props.setCurrentProblem,
     setCorrect: props.setCorrect,
   }
@@ -103,6 +104,7 @@ Quiz.propTypes = {
   selectQuiz: propTypes.func.isRequired,
   addQuiz: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,
+  submitAnswers: propTypes.func.isRequired,
   invalidate: propTypes.func.isRequired,
   permitEdit: propTypes.func.isRequired,
   setTitle: propTypes.func.isRequired,

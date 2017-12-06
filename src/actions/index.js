@@ -201,6 +201,11 @@ export const submitQuiz = quiz => dispatch => {
     .catch( err => console.log(err));
 }
 
+export const submitAnswers = quiz => dispatch => {
+  const token = utils.tokenAuth.get('token');
+  const answers = utils.extractAnswers(quiz);console.log(answers);
+}
+
 /*
 export const laterChange = {
   setTokenCookie,

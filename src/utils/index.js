@@ -84,3 +84,17 @@ export const convertToReduxFormat = quiz => {
   return { _id, title, problems: _problems }
 
 }
+
+export const extractAnswers = quiz => {
+  const { _id, title, problems } = quiz;
+  if (!_id || !title || !problems) return;
+  let _problems = convertObjectToArray(problems)
+  _problems = _problems.map((p, k) => {
+    if (!p.question || !p.choices)  return ;
+    return { 
+      id: k,
+      correct: p.correct,
+    }
+  }); 
+  return { _id, problems: _problems };
+}

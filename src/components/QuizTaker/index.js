@@ -11,7 +11,7 @@ import * as utils from '../../utils';
 class QuizTaker extends React.Component {
   constructor() {
     super();
-    this.submitQuiz = this.submitQuiz.bind(this);
+    this.submitAnswers = this.submitAnswers.bind(this);
     this.setCorrect = this.setCorrect.bind(this);
     this.moveToNextProblem = this.moveToNextProblem.bind(this);
     this.moveToPreviousProblem = this.moveToPreviousProblem.bind(this);
@@ -27,8 +27,10 @@ class QuizTaker extends React.Component {
     
   }
 
-  submitQuiz(e) {
+  submitAnswers(e) {
     e.preventDefault();
+    const { submitAnswers, currentQuiz } = this.props;
+    submitAnswers(currentQuiz);
   }
 
 
@@ -83,7 +85,7 @@ class QuizTaker extends React.Component {
         </div>
         <Button 
           className="quiz-taker__button submit"
-          handleClick={e => e.preventDefault()}
+          handleClick={this.submitAnswers}
         >Submit</Button>
       </div>
     );  	
@@ -93,13 +95,14 @@ class QuizTaker extends React.Component {
 
 QuizTaker.propTypes = {
   currentQuizId: propTypes.string,
+  currentQuiz: propTypes.object,
   title: propTypes.string,
   currentProblemId: propTypes.number,
   question: propTypes.object,
   choices: propTypes.object,
   correct: propTypes.string,
   selectQuiz: propTypes.func.isRequired,
-  submitQuiz: propTypes.func.isRequired,
+  submitAnswers: propTypes.func.isRequired,
   setCurrentProblem: propTypes.func.isRequired,
   setCorrect: propTypes.func.isRequired,
 };
