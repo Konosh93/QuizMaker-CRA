@@ -1,3 +1,4 @@
+var utils = require('../../utils');
 var passport = require('passport');
 var User = require('../../models/user.js');
 var Quiz = require('../../models/quiz.js');
@@ -22,7 +23,15 @@ function getAllQuizes(req, res){
 		if (err) {
 			return res.status(500).json({ errors: {message: "Something is wrong with our server"}});
 		}
-		return res.status(200).json({quizes});
+		if (!quizes || quizes.length === 0) {
+			return res.status(422).json({ errors: { message: "No valid quizes found"}})
+		}
+		const _quizes = [];
+		quizes.forEach(quiz => {
+			_quizes.push(utils.convertToClientFormat(quiz))
+		})
+		console.log(_quizes[3]);
+		return res.status(200).json({ quizes: _quizes});
 	});
 }
 
