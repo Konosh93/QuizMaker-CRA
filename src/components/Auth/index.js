@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import LoginForm from '../LoginForm';
 import Button from '../Button';
+import Positioner from '../Positioner';
 import style from './index.css';
 import utils from './utils';
 
@@ -63,11 +64,16 @@ class Auth extends React.Component {
     if (!this.props.user) return <LoginForm { ...loginFormProps } />     
 
     return (
+      <Positioner width={this.props.width} height={this.props.height}>
+      <h3>Hello, {this.props.user.name}</h3>
+      <p>You are currrently logged in.</p>
       <Button
-        className="auth__logout"
+        className="auth__logout-button"
         handleClick={this.logout}
-      >LOGOUT
-      </Button>
+      >Click here to logout
+      </Button>        
+      </Positioner>
+
     );
   }
 }
