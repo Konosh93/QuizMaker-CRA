@@ -43,12 +43,14 @@ class QuizTaker extends React.Component {
 
   moveToNextProblem(e) {
     e.preventDefault();
-    this.props.setCurrentProblem(this.props.currProblemId+1);
+    const { currentQuiz, currentProblemId } = this.props;
+    if (!currentQuiz.problems[currentProblemId + 1]) return;
+    this.props.setCurrentProblem(this.props.currentProblemId + 1);
   }
 
   moveToPreviousProblem(e) {
     e.preventDefault();
-    this.props.setCurrentProblem(this.props.currProblemId - 1);
+    this.props.setCurrentProblem(this.props.currentProblemId - 1);
   }
   render() {
     const {

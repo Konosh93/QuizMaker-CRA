@@ -66,14 +66,13 @@ class QuizMaker extends React.Component {
 
   moveToNextProblem(e) {
     e.preventDefault();
-    if (!this.props.question.text || this.props.question.text === '') return;
     this.props.addProblem(this.props.currentQuizId);
     this.props.setCurrentProblem(this.props.currentProblemId+1);
   }
 
   moveToPreviousProblem(e) {
     e.preventDefault();
-    if (this.props.currProblemId === 0) return;
+    if (this.props.currentProblemId === 0) return;
     this.props.setCurrentProblem(this.props.currentProblemId - 1);
   }
 
