@@ -17,7 +17,9 @@ const QuizDrafts = ({
   if (!currentQuizId || !currentQuiz) return null;
   return (
     <div className="quiz-drafts">
-      <Link to="/quiz/make">
+    <h3>Unsaved Drafts</h3>
+     <ul>
+      <li><Link to="/quiz/make">
         <Button  
           handleClick={() => {addQuiz(currentQuizId, currentQuiz);selectQuiz(currentQuizId);}}
           className="quiz-drafts__title"
@@ -30,7 +32,8 @@ const QuizDrafts = ({
         >
           Delete
         </Button>
-      </Link>
+      </Link></li>
+    </ul>
     </div>
   );
 }
