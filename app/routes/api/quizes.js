@@ -87,12 +87,14 @@ function postQuizAnswers(req, res) {
 		if (!_quiz) {
 			return res.status(422).json({ errors: { message: 'This quiz no longer exists'}})			
 		}
-		const score = _quiz.problems.reduce((acc, problem) => {
+		let score = 0;
+		score = _quiz.problems.reduce((acc, problem) => {
 			for (let p of problems) {
-				if (p.id !== problem.id) continue;console.log(p.correct, problem.correct)
+				if (p.id !== problem.id) continue;
 				if (p.correct === problem.correct) {
 					return acc + 1;
 				}
+				return acc;
 			}
 		}, 0);	
 		return res.status(200).json({ score });	
