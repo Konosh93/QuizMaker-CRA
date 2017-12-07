@@ -43,6 +43,8 @@ const quizes = {
     requests.get('/api/quizes')),
   submitQuiz: (quiz) => (
     requests.post('/api/quizes', { quiz })),
+  submitAnswers: answers => (
+    requests.post('/api/quizes/answers', { answers })),
 };
 
 export default {

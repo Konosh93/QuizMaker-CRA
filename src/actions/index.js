@@ -203,7 +203,10 @@ export const submitQuiz = quiz => dispatch => {
 
 export const submitAnswers = quiz => dispatch => {
   const token = utils.tokenAuth.get('token');
-  const answers = utils.extractAnswers(quiz);console.log(answers);
+  const answers = utils.extractAnswers(quiz);
+  return agent.quizes.submitAnswers(answers)
+    .then(res => console.log(res.body.score))
+    .catch(err => console.log(err));
 }
 
 /*

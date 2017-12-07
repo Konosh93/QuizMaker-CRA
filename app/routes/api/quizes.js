@@ -4,9 +4,11 @@ var Quiz = require('../../models/quiz.js');
 var router = require('express').Router();
 var auth = require('./middleware/auth');
 
-router.get('/me', auth.required, getMyQuizes, errHandler);;
+router.get('/me', auth.required, getMyQuizes, errHandler);
 router.get('/', getAllQuizes, errHandler);
-router.post('/', auth.required, postQuiz, errHandler);;
+router.post('/', auth.required, postQuiz, errHandler);
+router.post('/answers', postQuizAnswers, errHandler);
+
 
 function errHandler(err, req, res, next) {
 	if (err) {
@@ -29,7 +31,7 @@ function getMyQuizes(req, res){
 }
 
 function postQuiz(req, res) {
-	const id = req.body.quiz._id;console.log(id)
+	const id = req.body.quiz._id;
 	if (id !== 'new-quiz') {
 		standardErrResponse(res, 'This is not a new quiz');
 	}
@@ -56,6 +58,35 @@ function postQuiz(req, res) {
 			return res.status(200).json({message: 'success', quiz: {data: _quiz, id: _quiz._id}});
 		})
 		
+	});
+}
+
+
+function postQuizAnswers(req, res) {
+	const { _id, problems } = req.body.answers;
+	if (_id === 'new-quiz') {
+		standardErrResponse(res, 'Submit this quiz before you submit answers');
+	}
+	if (!problems || !(problems instanceof Array)) {
+		return res.status(422)
+				  .json({errors: {problems: 'Quiz must have at least one valid problem'}});
+	}
+	Quiz.findOne({ _id }, function(err, _quiz){
+		if (err) {
+			return res.status(500).json({ errors: { message: 'Something went wrong, we are sorry.'}})
+		}
+		if (!_quiz) {
+			return res.status(422).json({ errors: { message: 'This quiz no longer exists'}})			
+		}
+		const score = _quiz.problems.reduce((acc, problem) => {
+			for (let p of problems) {
+				if (p.id !== problem.id) continue;console.log(p.correct, problem.correct)
+				if (p.correct === problem.correct) {
+					return acc + 1;
+				}
+			}
+		}, 0);	
+		return res.status(200).json({ score });	
 	});
 }
 

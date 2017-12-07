@@ -29,8 +29,8 @@ class QuizTaker extends React.Component {
 
   submitAnswers(e) {
     e.preventDefault();
-    const { submitAnswers, currentQuiz } = this.props;
-    submitAnswers(currentQuiz);
+    const { submitAnswers, currentQuiz, currentQuizId } = this.props;
+    submitAnswers({ ...currentQuiz, _id: currentQuizId});
   }
 
 

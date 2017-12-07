@@ -92,7 +92,7 @@ export const extractAnswers = quiz => {
   _problems = _problems.map((p, k) => {
     if (!p.question || !p.choices)  return ;
     return { 
-      id: k,
+      id: k.toString(),
       correct: p.correct,
     }
   }); 
