@@ -7,6 +7,7 @@ var express = require('express'),
  	mongoose = require('mongoose');
 
 let MONGODB_URI;
+console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV !== 'production') {
   process.env.NODE_CONFIG_DIR = './app/config/json';
   config = require('config')
