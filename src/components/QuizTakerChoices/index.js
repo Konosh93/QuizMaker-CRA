@@ -12,7 +12,7 @@ const QuizTakerChoices = ({
 }) => {
   const keys = choices ? Object.keys(choices) : null;
   const choiceElements = keys ? keys.map(k => (
-    <div key={k} className={`choices__choice ${className}`}>
+    <div key={k} className="quiz-taker-choices__choice">
       <QuizTakerChoice
         setCorrect={setCorrect}
         answer={{id: k, choice: choices[k].choice}}
@@ -21,7 +21,7 @@ const QuizTakerChoices = ({
     </div>
   )) : null;
   return (
-    <div className="choices">
+    <div className={`quiz-taker-choices__choice ${className}`}>
       { choiceElements }
     </div>
   );

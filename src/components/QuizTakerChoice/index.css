@@ -1,36 +1,10 @@
-.quiz-taker-choice {
+.quiz-taker-choice__button {
 	display: flex;
 	flex-direction: row;
 }
 
 .quiz-taker-choice--selected {
 	background-color: green;
-}
-
-.quiz-taker-choice__radio {
-	order: 1;
-	width: 40px;
-	height: 40px;
-	float: left;
-	margin-right: 10px;
-}
-
-.quiz-taker-choice__answer {
-	order: 2;
-	flex-grow: 1;
-	float: left;
-	min-height: 40px;
-
-}
-
-.quiz-taker-choice__popover {
-	order: 3;
-	flex-grow: 0.1;
-	float: right;
-	height: 40px;
-}
-
-.quiz-taker-choice__choice-popover-trigger {
-	font-size: 2.5em;
-	height: 100%;
+	opacity: 0.9;
+	color: white;
 }

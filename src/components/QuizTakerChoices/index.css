@@ -1,0 +1,12 @@
+.quiz-taker-choices {
+
+}
+
+.quiz-taker-choices__choice {
+	box-sizing: border-box;
+	margin-top: 10px;
+}
+
+.quiz-taker-choices__choice:last-child {
+
+}

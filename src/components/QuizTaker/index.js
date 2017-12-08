@@ -67,18 +67,16 @@ class QuizTaker extends React.Component {
       <div className="quiz-taker">
         <div className="quiz-taker__title">{title}</div>
         <div className="quiz-taker__body">
-          <div className="quiz-taker__problem">
-            <div className="quiz-taker__problems-count">{currentProblemId+1}</div>
-            <TextDisplay 
-              editorState={question}
-            />
-            <QuizTakerChoices 
-              className="quiz-taker__choices"
-              choices={choices}
-              setCorrect={this.setCorrect}
-              correct={correct}
-            />
-          </div>
+          <div className="quiz-taker__problems-count">{currentProblemId+1}</div>
+          <TextDisplay 
+            editorState={question}
+          />
+          <QuizTakerChoices 
+            className="quiz-taker__choices"
+            choices={choices}
+            setCorrect={this.setCorrect}
+            correct={correct}
+          />
           <ProblemNav 
             className="quiz-taker__navigation"
             moveToNext={this.moveToNextProblem}

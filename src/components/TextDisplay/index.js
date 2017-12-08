@@ -10,17 +10,9 @@ class TextDisplay extends React.Component {
   }
 
   render() {
-    const {editorState} = this.props;
-    let className = 'RichEditor-editor';
-    var contentState = editorState.getCurrentContent();
-    if (!contentState.hasText()) {
-      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-        className += ' RichEditor-hidePlaceholder';
-      }
-    }
-
+    const {editorState, className} = this.props;
     return (
-      <div className="RichEditor-root">
+      <div className={`RichDisplay-root ${className}`}>
         <Editor
           editorState={editorState}
           ref="editor"

@@ -15,10 +15,11 @@ const QuizTakerChoice = ({
   } 
   return (
     <Button 
-      className={`quiz-taker-choice ${selected}`} 
+      className="quiz-taker-choice__button"
       handleClick={(e) => setCorrect(e, answer.id, answer.choice)}
     >
         <TextDisplay
+          className={`${selected}`} 
           editorState={answer.choice}
         />
     </Button>
