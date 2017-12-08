@@ -56,7 +56,7 @@ const LoginForm = props => {
       >{buttonText}
       </Button>
       <hr />
-        <span onClick={toggleAction}>{toggleText}</span>
+        <Button handleClick={toggleAction}>{toggleText}</Button>
     </div></Positioner>
   );
 };
