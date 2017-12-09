@@ -1,7 +1,7 @@
 import agent from '../agent';
 import * as types from '../constants';
 import * as utils from '../utils';
-impot * as storage form '../storage';
+import * as storage from '../storage';
 
 export const setSize = (width, height) => ({
   type: types.RESIZE,
