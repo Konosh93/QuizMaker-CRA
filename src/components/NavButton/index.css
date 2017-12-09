@@ -14,15 +14,16 @@
 	border-right: 1px solid #ECF0F1;
 	text-align: center;
 	line-height: 40px;
+	padding: 5px;
 }
 
-.nav-button a, a:visited {
-	color:#909497;
+.nav-button a, .nav-buttona a:visited {
+	color:#00aced;
 	text-decoration: none;
 }
 
-.nav-button a:hover, a:active{
-	color:#616A6B;
+.nav-button a:hover, .nav-buttona a:active{
+	color:#00aced;
 	text-decoration: none;
 	font-weight: 700;
 }	

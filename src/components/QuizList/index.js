@@ -18,7 +18,7 @@ const QuizList = ({
     {quizes[id].title}</Button></Link>) 
   return (
     <div className="quiz-list">
-      <Button handleClick={fetchQuizes} className="quiz-list__button-fetch" >FETCH QUIZES</Button>
+      <Button handleClick={fetchQuizes} className="quiz-list__button-fetch" >Fetch All Quizes</Button>
       {quizlist}    
     </div>
   );

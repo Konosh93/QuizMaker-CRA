@@ -11,11 +11,10 @@ const Positioner = ({ width, height, children}) => {
     margin: '0 auto',
     fontSize: '16px',
     lineHeight: '60px',
-    position: 'fixed',
+    position: 'absolute',
     top: navigatorHeight + 10,
     left: 0,
     right:0,
-    overflow: 'scroll',
   }
   let childStyle ={
     width: width > 640 ? 640 : '90%',
@@ -32,11 +31,10 @@ const Positioner = ({ width, height, children}) => {
       margin:'0 auto',
       fontSize: '16px',
       lineHeight: '40px',
-      position: 'fixed',
+      position: 'absolute',
       top: navigatorHeight + 10,
       left: 0,
       right:0,
-      overflow: 'scroll',
     }
   }
  return (<div style={inlineStyle}>

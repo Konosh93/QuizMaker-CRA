@@ -1,9 +1,11 @@
 .navigation {
  box-sizing: border-box;
- margin: 10px;
+ border-bottom: 1px solid #ddd;
+ background-color: white;
  position: fixed;
  top: 0px;
  left: 0px;
  right: 0px;
  height: 60px;
+ z-index: 20;
 }

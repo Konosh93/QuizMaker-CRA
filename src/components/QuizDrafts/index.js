@@ -12,9 +12,12 @@ const QuizDrafts = ({
   addQuiz,
   selectQuiz, 
 }) => {
+  const noDrafts = (
+    <div><li>There are no unsaved drafts.</li></div>
+  );
   const draft = getQuizDraft();
   const {currentQuizId, currentQuiz} = draft || {};
-  if (!currentQuizId || !currentQuiz) return null;
+  if (!currentQuizId || !currentQuiz) return noDrafts;;
   return (
     <div className="quiz-drafts">
     <h3>Unsaved Drafts</h3>

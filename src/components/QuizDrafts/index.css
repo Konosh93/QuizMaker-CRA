@@ -5,13 +5,21 @@
 	text-align: left;
 	margin-right: 20px;
 }
+.quiz-drafts__title:hover {
+  font-weight: 700;
+  color: black;
+}
 
 .quiz-drafts__delete {
-	box-sizing: border-box;
-	width:90px;
-	background-color: #ff4d4d; /*red warning*/
-	color:white;
-	text-align: center;
-	height: 25px;
-	line-height: 25px;
+  box-sizing: border-box;
+  color:#ff4d4d;
+  width:90px;
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+}
+
+.quiz-drafts__delete:hover {
+  color:white;
+  background-color: #ff4d4d; /*red warning*/
 }

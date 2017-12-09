@@ -13,12 +13,13 @@
 }
 
 .quiz-list__button-fetch {
+	box-sizing: border-box;
 	width: 150px;
 	height: 40px;
 	display: block;
 	background-color: black;
 	color: white;
-	margin-bottom: 5px;
+	margin: 15px;
 	text-align: center;
 	line-height: 40px;
 }
