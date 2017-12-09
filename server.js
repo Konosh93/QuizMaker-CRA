@@ -30,9 +30,13 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/build'));
 
 
-app.get('/*', function(req,res,next){
-  res.sendFile(__dirname + '/build/index.html');
+app.get('/:gate*?', function(req,res,next){
+  if (req.params.gate !== 'api') {console.log(req.params.gate)
+  	return res.sendFile(__dirname + '/build/index.html');
+  }console.log(req.params.gate)
+  return next();
 })
+
 
 require('./app/config/passport.js');
 
