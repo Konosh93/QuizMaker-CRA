@@ -30,8 +30,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/build'));
 
 
-app.get('/', function(req,res,next){
-  
+app.get('/*', function(req,res,next){
+  res.sendFile(__dirname + '/build/index.html');
 })
 
 require('./app/config/passport.js');

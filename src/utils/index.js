@@ -6,7 +6,7 @@ import agent from '../agent';
 export const tokenAuth = {
   set:  (name, value, options) => cookies.set(name, value, options),
   get:  name => cookies.get(name),
-  remove:  name => cookies.remove(name),
+  remove:  (name, options) => cookies.remove(name, options),
 }
 
 const isPlainObject = obj => (typeof obj === 'object' && !Array.isArray(obj));

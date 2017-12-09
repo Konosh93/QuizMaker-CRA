@@ -57,7 +57,7 @@ export const signup = (name, email, password) => dispatch => {
 };
 
 export const logout = () => {
-  utils.tokenAuth.remove('token');
+  utils.tokenAuth.remove('token', {path: '/'});
   return{
     type: types.LOGOUT,
   }
