@@ -43,10 +43,35 @@ function getMyQuizes(req, res){
 	});
 }
 
+function putQuiz(req, res) {
+	const id = req.body.quiz._id;console.log(id);
+	Quiz.findById(id, (err, _quiz) => {
+		if (err) return res.status(500).json({ errors: { message: "Something is wrong with our server"}});
+		if (!_quiz) return res.status(422).json({ errors: { message: "This quiz does not exist anymore"}});
+		if (req.user.id !== _quiz.user.toString()) return res.status(422).json({ errors: { message: "You have no permission to edit this quiz"}})
+        const { title, problems } = req.body.quiz;
+		if (!title || typeof title !== 'string') {
+			return res.status(422)
+				.json({errors: {title: 'Quiz must have a valid title'}});
+		}
+		if (!problems || !(problems instanceof Array)) {
+			return res.status(422)
+				.json({errors: {problems: 'Quiz must have at least one valid problem'}});
+		}
+		_quiz.title = title
+		_quiz.problems = problems
+		return _quiz.save(function(err){
+			if (err) return standardErrResponse(res, 'quiz could not be saved');
+			console.log(_quiz._id)
+			return res.status(200).json({message: 'success', quiz: {data: _quiz, id: _quiz._id}});
+	})
+	});
+}
+
 function postQuiz(req, res) {
 	const id = req.body.quiz._id;
 	if (id !== 'new-quiz') {
-		standardErrResponse(res, 'This is not a new quiz');
+		return putQuiz(req, res);
 	}
 	const quiz = {title: req.body.quiz.title, problems: req.body.quiz.problems}
 	if (!quiz.title || typeof quiz.title !== 'string') {
