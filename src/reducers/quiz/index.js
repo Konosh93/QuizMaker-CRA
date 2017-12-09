@@ -11,6 +11,8 @@ const quizReducer = (state = initState, action) => {
   switch (action.type) {
   	case types.REQUEST_QUIZES:
   	  return { ...state, isFetching: true };
+    case types.CLEAR_QUIZES:
+      return { ...state, quizes: {} };
     case types.SELECT_QUIZ:
       return { ...state, currentQuizId: action.payload.quizId};
     case types.ADD_QUIZ:

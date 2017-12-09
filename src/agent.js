@@ -3,8 +3,8 @@ import _superagent from 'superagent';
 
 const superagent = superagentPromise(_superagent, global.Promise);
 
-//const API_ROOT= 'http://localhost:3001';
-const API_ROOT = 'https://dry-taiga-94406.herokuapp.com';
+const API_ROOT= 'http://localhost:3001';
+//const API_ROOT = 'https://dry-taiga-94406.herokuapp.com';
 
 // const encode = encodeURIComponent;
 let token = null;
@@ -41,6 +41,8 @@ const quizes = {
     requests.get('/api/quizes', { id })),
   fetchQuizes: () => (
     requests.get('/api/quizes')),
+  fetchMyQuizes: () => (
+    requests.get('/api/quizes/me')),
   submitQuiz: (quiz) => (
     requests.post('/api/quizes', { quiz })),
   submitAnswers: answers => (

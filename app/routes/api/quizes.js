@@ -4,6 +4,7 @@ var User = require('../../models/user.js');
 var Quiz = require('../../models/quiz.js');
 var router = require('express').Router();
 var auth = require('./middleware/auth');
+var mongoose = require('mongoose');
 
 router.get('/me', auth.required, getMyQuizes, errHandler);
 router.get('/', getAllQuizes, errHandler);
@@ -30,13 +31,16 @@ function getAllQuizes(req, res){
 		quizes.forEach(quiz => {
 			_quizes.push(utils.convertToClientFormat(quiz))
 		})
-		console.log(_quizes[3]);
 		return res.status(200).json({ quizes: _quizes});
 	});
 }
 
 function getMyQuizes(req, res){
-	return res.json({message: 'Welcome to the quizes pagee'});
+	Quiz.find({user: mongoose.Types.ObjectId(req.user.id)}, (err, quizes) => {
+		if (err) return res.status(500).json({ errors: {message: "Something is wrong with our server"}});
+		if (!quizes) return res.status(200).json({ message: "You have no quizes, make some"});
+		return res.status(200).json({quizes});
+	});
 }
 
 function postQuiz(req, res) {
@@ -58,7 +62,8 @@ function postQuiz(req, res) {
 			throw err;
 		}
 		if (!_quiz) {
-			var _quiz = new Quiz(quiz);			
+			var _quiz = new Quiz(quiz);
+			_quiz.user = mongoose.Types.ObjectId(req.user.id);
 		}
 		return _quiz.save(function(err){
 			if (err) {

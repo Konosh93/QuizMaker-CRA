@@ -56,6 +56,7 @@ const Quiz = props => {
     selectQuiz: props.selectQuiz,
     quizes: props.quizes,
     fetchQuizes: props.fetchQuizes,
+    fetchMyQuizes: props.fetchMyQuizes,
   }
   const quizDraftsProps = {
     selectQuiz: props.selectQuiz,

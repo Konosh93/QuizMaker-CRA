@@ -16,7 +16,7 @@
 	box-sizing: border-box;
 	width: 150px;
 	height: 40px;
-	display: block;
+	display: inline-block;
 	background-color: black;
 	color: white;
 	margin: 15px;

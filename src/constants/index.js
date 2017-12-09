@@ -3,6 +3,7 @@ export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 export const BEGIN_AUTH = 'BEGIN_AUTH';
 export const REQUEST_QUIZES = 'REQUEST_QUIZES';
+export const CLEAR_QUIZES = 'CLEAR_QUIZES';
 export const ADD_QUIZ = 'ADD_QUIZ';
 export const SELECT_QUIZ = 'SELECT_QUIZ';
 export const SET_TITLE = 'SET_TITLE';

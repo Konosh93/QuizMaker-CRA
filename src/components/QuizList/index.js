@@ -10,6 +10,7 @@ const QuizList = ({
   quizes,
   selectQuiz, 
   fetchQuizes,
+  fetchMyQuizes
 }) => {
   const ids = Object.keys(quizes);
   const quizlist = ids.map(id => <Link key={id} to="/quiz/take"><Button  
@@ -19,6 +20,7 @@ const QuizList = ({
   return (
     <div className="quiz-list">
       <Button handleClick={fetchQuizes} className="quiz-list__button-fetch" >Fetch All Quizes</Button>
+      <Button handleClick={fetchMyQuizes} className="quiz-list__button-fetch" >Fetch My Quizes</Button>
       {quizlist}    
     </div>
   );
@@ -27,5 +29,7 @@ const QuizList = ({
 QuizList.propTypes = {
   quizes: propTypes.object.isRequired,
   selectQuiz: propTypes.func.isRequired,
+  fetchQuizes: propTypes.func.isRequired,
+  fetchMyQuizes: propTypes.func.isRequired,
 };
 export default QuizList;

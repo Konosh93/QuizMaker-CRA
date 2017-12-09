@@ -81,6 +81,10 @@ export const requestQuizes = () => ({
   type: types.REQUEST_QUIZES,
 });
 
+export const clearQuizes = () => ({
+  type: types.CLEAR_QUIZES,
+});
+
 export const selectQuiz = (quizId) => ({
   type: types.SELECT_QUIZ,
   payload: {
@@ -179,7 +183,18 @@ export const setChoice = (choiceId, editorState) => ({
 /* actual */
 export const fetchQuizes = () => dispatch => {
   dispatch(requestQuizes());
+  dispatch(clearQuizes())
   return agent.quizes.fetchQuizes()
+    .then( res => dispatch(transformThenAdd(res.body.quizes)))
+    .catch( err => console.log(err))
+}
+
+export const fetchMyQuizes = () => dispatch => {
+  dispatch(requestQuizes());
+  dispatch(clearQuizes())
+  const token = utils.tokenAuth.get('token');
+  agent.setToken(token);
+  return agent.quizes.fetchMyQuizes()
     .then( res => dispatch(transformThenAdd(res.body.quizes)))
     .catch( err => console.log(err))
 }

@@ -31,6 +31,7 @@ const mapDispatchToProps = dispatch => (
   {
     requestQuizes: () => dispatch(actions.requestQuizes()),
     fetchQuizes: () => dispatch(actions.fetchQuizes()),
+    fetchMyQuizes: () => dispatch(actions.fetchMyQuizes()),
     selectQuiz: quiz => dispatch(actions.selectQuiz(quiz)),
     addQuiz: (quiz, data) => dispatch(actions.addQuiz(quiz, data)),
     submitQuiz: quiz => dispatch(actions.submitQuiz(quiz)),
