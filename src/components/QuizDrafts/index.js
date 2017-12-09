@@ -30,7 +30,7 @@ const QuizDrafts = ({
           {currentQuiz.title || 'unsaved-draft'}
         </Button> 
         <Button  
-          handleClick={() => removeOneDraft(currentQuizId)}
+          handleClick={() => removeOneDraft()}
           className="quiz-drafts__delete"
         >
           Delete

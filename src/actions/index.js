@@ -1,6 +1,7 @@
 import agent from '../agent';
 import * as types from '../constants';
 import * as utils from '../utils';
+impot * as storage form '../storage';
 
 export const setSize = (width, height) => ({
   type: types.RESIZE,
@@ -212,7 +213,10 @@ export const submitQuiz = quiz => dispatch => {
   const _quiz = utils.convertToServerFormat(quiz);
   agent.setToken(token);
   return agent.quizes.submitQuiz(_quiz)
-    .then( res => dispatch(syncQuiz('new-quiz', res.body.quiz._id)))
+    .then( res => {
+      storage.removeOneDraft();
+      dispatch(syncQuiz('new-quiz', res.body.quiz._id))
+    })
     .catch( err => console.log(err));
 }
 

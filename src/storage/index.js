@@ -32,6 +32,6 @@ export const getQuizDraft = () => {
   return { currentQuizId: quiz._id, currentQuiz: _reduxFormatQuiz };
 }
 
-export const removeOneDraft = id => {
+export const removeOneDraft = () => {
   return localStorage.removeItem(quizStorageKey);
 }
