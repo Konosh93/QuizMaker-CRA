@@ -50,7 +50,7 @@ function errHandler (err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
   	return res.status(422).json({errors: {message: 'you are currently not logged in'}});
   };
-  res.status(422).json({errors: { message: "Something went wrong"}})	
+  res.status(500).json({errors: { message: "Something went wrong"}})	
 }
 
 function recall(req, res, next){

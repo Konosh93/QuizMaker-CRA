@@ -1,5 +1,7 @@
 var router = require('express').Router();
 var jwt = require('express-jwt');
+var UnauthorizedError = require('express-jwt/lib').UnauthorizedError;
+console.log(UnauthorizedError);
 var secret = require('../../../config').secret;
 
 function fromHeaderOrQuerystring (req) {
@@ -16,7 +18,12 @@ var required = router.use(jwt({
 	secret,
 	userProperty: 'user',
 	getToken: fromHeaderOrQuerystring,
-}));
+}), (req, res, next) => {
+	if (req.user.exp < Date.now()) {
+	   return next(new UnauthorizedError('Token-expired', { message: 'Token is is expired' }));
+	}
+	next();
+});
 
 var optional = router.use(jwt({
 	secret,

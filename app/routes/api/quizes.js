@@ -44,7 +44,7 @@ function getMyQuizes(req, res){
 }
 
 function putQuiz(req, res) {
-	const id = req.body.quiz._id;console.log(id);
+	const id = req.body.quiz._id;
 	Quiz.findById(id, (err, _quiz) => {
 		if (err) return res.status(500).json({ errors: { message: "Something is wrong with our server"}});
 		if (!_quiz) return res.status(422).json({ errors: { message: "This quiz does not exist anymore"}});
@@ -62,7 +62,6 @@ function putQuiz(req, res) {
 		_quiz.problems = problems
 		return _quiz.save(function(err){
 			if (err) return standardErrResponse(res, 'quiz could not be saved');
-			console.log(_quiz._id)
 			return res.status(200).json({message: 'success', quiz: {data: _quiz, id: _quiz._id}});
 	})
 	});
