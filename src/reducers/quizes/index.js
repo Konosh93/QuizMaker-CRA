@@ -14,7 +14,7 @@ const quizReducer = (state = initState, action) => {
   	  return { ...state, isFetching: true };
     case types.ADD_QUIZ:
       const _quiz = quiz(undefined, action)
-      return { ...state, quiz: { ..._quiz, ...action.payload.quiz} }
+      return { ...state, quiz: { ..._quiz, ...action.payload.quiz}, score:null }
     case types.ADD_QUIZ_LIST:
       return { ...state, quizList: action.payload.quizList }
     case types.ADD_SCORE:
