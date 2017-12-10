@@ -13,18 +13,18 @@ router.post('/', auth.required, postQuiz, errHandler);
 router.post('/answers', postQuizAnswers, errHandler);
 
 
-function errHandler(err, req, res, next) {console.log(req.body)
+function errHandler(err, req, res, next) {
 	if (err) {
 		return res.status(500).json({errors: { message: "sorry, something unexpected happened"}});
 	}
 }
 
 
-function getOneQuiz(req, res) {console.log(req.params.slug)
+function getOneQuiz(req, res) {
 	Quiz.findOne({ slug: req.params.slug }, (err, quiz) => {
 		if (err) return res.status(500).json({ errors: {message: "Something is wrong with our server"}});
 		if (!quiz) return res.status(422).json({ errors: { message: "No quiz found"}});
-		return res.status(200).json({ quiz });
+		return res.status(200).json({ quiz: utils.convertToClientFormat(quiz) });
 	});
 }
 
@@ -38,8 +38,9 @@ function getAllQuizes(req, res){
 		}
 		const _quizes = [];
 		quizes.forEach(quiz => {
-			_quizes.push(utils.convertToClientFormat(quiz))
-		})
+			const { title, slug } = quiz;
+			_quizes.push({ title, slug });
+		});
 		return res.status(200).json({ quizes: _quizes});
 	});
 }
@@ -76,7 +77,7 @@ function putQuiz(req, res) {
 	});
 }
 
-function postQuiz(req, res) {console.log(req.body.quiz._id)
+function postQuiz(req, res) {
 	const id = req.body.quiz._id;
 	if (id !== 'new-quiz') {
 		return putQuiz(req, res);

@@ -24,6 +24,8 @@ class QuizMaker extends React.Component {
   }
 
   componentWillMount(){
+    this.props.addQuiz({title: ''});
+    this.props.addProblem();
   }
 
   componentWillReceiveProps() {
@@ -32,8 +34,8 @@ class QuizMaker extends React.Component {
 
   submitQuiz(e) {
     e.preventDefault();
-    if (!this.props.currentQuiz) return;
-    this.props.submitQuiz({ ...this.props.currentQuiz, _id: this.props.currentQuizId});
+    if (!this.props.quiz) return;
+    this.props.submitQuiz(this.props.quiz);
   }
 
   setTitle(e) {
@@ -66,7 +68,7 @@ class QuizMaker extends React.Component {
 
   moveToNextProblem(e) {
     e.preventDefault();
-    this.props.addProblem(this.props.currentQuizId);
+    this.props.addProblem();
     this.props.setCurrentProblem(this.props.currentProblemId+1);
   }
 
@@ -77,9 +79,8 @@ class QuizMaker extends React.Component {
   }
 
   initiateQuiz () {
-    this.props.addQuiz('new-quiz', {title: ''});
-    this.props.selectQuiz('new-quiz');
-    this.props.addProblem('new-quiz');
+    this.props.addQuiz({title: ''});
+    this.props.addProblem();
   }
 
   render() {
@@ -129,14 +130,13 @@ class QuizMaker extends React.Component {
 }
 
 QuizMaker.propTypes = {
-  currentQuizId: propTypes.string,
-  currentQuiz: propTypes.object,
+  quiz: propTypes.object,
   title: propTypes.string,
   currentProblemId: propTypes.number,
   question: propTypes.object,
   choices: propTypes.object,
   correct: propTypes.string,
-  selectQuiz: propTypes.func.isRequired,
+  addQuiz: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,
   setTitle: propTypes.func.isRequired,
   addProblem: propTypes.func.isRequired,

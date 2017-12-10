@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux-immutable';
 import auth from './auth';
 import device from './device';
-import quiz from './quiz';
+import quizes from './quizes';
 
 const rootReducer = combineReducers({
   auth,
   device,
-  quiz,
+  quizes,
 });
 
 export default rootReducer;

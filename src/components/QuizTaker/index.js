@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import style from './index.css';
 import QuizTakerChoices from '../QuizTakerChoices';
+import { Link } from 'react-router-dom';
 import ProblemNav from '../ProblemNav';
 import Button from '../Button';
 import TextDisplay from '../TextDisplay';
@@ -21,7 +22,7 @@ class QuizTaker extends React.Component {
     const { match, fetchOneQuiz } = this.props;
     const { params } = match;
     const { slug } = params;
-    fetchOneQuiz(slug);
+    fetchOneQuiz(slug);console.log(slug);
   }
 
   componentWillReceiveProps() {
@@ -30,8 +31,9 @@ class QuizTaker extends React.Component {
 
   submitAnswers(e) {
     e.preventDefault();
-    const { submitAnswers, currentQuiz, currentQuizId } = this.props;
-    submitAnswers({ ...currentQuiz, _id: currentQuizId});
+    const { submitAnswers, quiz, history } = this.props;
+    submitAnswers({ ...quiz});
+    history.push('/quiz/result')
   }
 
 
@@ -44,8 +46,8 @@ class QuizTaker extends React.Component {
 
   moveToNextProblem(e) {
     e.preventDefault();
-    const { currentQuiz, currentProblemId } = this.props;
-    if (!currentQuiz.problems[currentProblemId + 1]) return;
+    const { quiz, currentProblemId } = this.props;
+    if (!quiz.problems[currentProblemId + 1]) return;
     this.props.setCurrentProblem(this.props.currentProblemId + 1);
   }
 
@@ -87,7 +89,8 @@ class QuizTaker extends React.Component {
         <Button 
           className="quiz-taker__button submit"
           handleClick={this.submitAnswers}
-        >Submit</Button>
+        >Submit
+        </Button>
       </div>
     );  	
   }
@@ -95,14 +98,13 @@ class QuizTaker extends React.Component {
 }
 
 QuizTaker.propTypes = {
-  currentQuizId: propTypes.string,
-  currentQuiz: propTypes.object,
+  quiz: propTypes.object,
   title: propTypes.string,
   currentProblemId: propTypes.number,
   question: propTypes.object,
   choices: propTypes.object,
   correct: propTypes.string,
-  selectQuiz: propTypes.func.isRequired,
+  fetchOneQuiz: propTypes.func.isRequired,
   submitAnswers: propTypes.func.isRequired,
   setCurrentProblem: propTypes.func.isRequired,
   setCorrect: propTypes.func.isRequired,

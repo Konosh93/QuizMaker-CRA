@@ -1,0 +1,25 @@
+.quiz-list {
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.quiz-list__button-select {
+	list-style: square;
+	display: block;
+	margin-bottom: 5px;
+	text-align: left;
+	line-height: 40px;
+}
+
+.quiz-list__button-fetch {
+	box-sizing: border-box;
+	width: 150px;
+	height: 40px;
+	display: inline-block;
+	background-color: black;
+	color: white;
+	margin: 15px;
+	text-align: center;
+	line-height: 40px;
+}

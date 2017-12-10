@@ -3,28 +3,22 @@ import { EditorState } from 'draft-js';
 
 const initState = {
   isFetching: false,
-  quizes: {},
-  currentQuizId: null,
+  quizList: [],
+  quiz:{},
+  score: null,
  };
 
 const quizReducer = (state = initState, action) => {
   switch (action.type) {
   	case types.REQUEST_QUIZES:
   	  return { ...state, isFetching: true };
-    case types.CLEAR_QUIZES:
-      return { ...state, quizes: {} };
-    case types.SELECT_QUIZ:
-      return { ...state, currentQuizId: action.payload.quizId};
     case types.ADD_QUIZ:
-      const _newQuiz = quiz(undefined, action);
-      return { 
-        ...state,
-        quizes: { ...state.quizes,
-          [action.payload.quizId]: { ..._newQuiz, ...action.payload.quizData }}};
-    case types.SYNC_QUIZ:
-      const newQuizes = { ...state.quizes, [action.payload.newQuizId]: state.quizes[action.payload.oldQuizId]};
-      delete newQuizes[action.payload.oldQuizId]
-      return { ...state, quizes: newQuizes }
+      const _quiz = quiz(undefined, action)
+      return { ...state, quiz: { ..._quiz, ...action.payload.quiz} }
+    case types.ADD_QUIZ_LIST:
+      return { ...state, quizList: action.payload.quizList }
+    case types.ADD_SCORE:
+      return { ...state, score: action.payload.score}
     case types.SET_TITLE:
     case types.INVALIDATE:
     case types.PERMIT_EDIT:
@@ -36,8 +30,7 @@ const quizReducer = (state = initState, action) => {
     case types.SET_CHOICE:
     case types.REMOVE_CHOICE:
     case types.SET_CORRECT:
-      const _key = state.currentQuizId;
-      return { ...state, quizes: { ...state.quizes, [_key]: quiz(state.quizes[_key], action)}}
+      return { ...state, quiz: quiz(state.quiz, action)}
     default:
       return state;
   }
@@ -55,8 +48,6 @@ const initquizState = {
 
 const quiz = (state=initquizState, action) => {
   switch (action.type) {
-    case types.ADD_QUIZ:
-      return state;
   	case types.PERMIT_EDIT:
   	  return { ...state, isMyQuiz: true}
     case types.SET_TITLE:

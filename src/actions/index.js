@@ -82,24 +82,28 @@ export const requestQuizes = () => ({
   type: types.REQUEST_QUIZES,
 });
 
+export const addQuiz = quiz => {
+  return {
+    type: types.ADD_QUIZ,
+    payload:{
+      quiz,
+    }
+  }
+}
+
+export const addQuizList = quizList => {
+  return {
+    type: types.ADD_QUIZ_LIST,
+    payload:{
+      quizList,
+    }
+  }
+}
+
 export const clearQuizes = () => ({
   type: types.CLEAR_QUIZES,
 });
 
-export const selectQuiz = (quizId) => ({
-  type: types.SELECT_QUIZ,
-  payload: {
-    quizId,
-  }
-});
-
-export const addQuiz = (quizId, quizData) => ({
-  type: types.ADD_QUIZ,
-  payload: {
-    quizId,
-    quizData,
-  }
-});
 
 export const permitEdit = () => ({
   type: types.PERMIT_EDIT,
@@ -111,6 +115,15 @@ export const setTitle =  title => ({
     title,
   }
 });
+
+export const addScore = score => {
+  return {
+    type: types.ADD_SCORE,
+    payload: {
+      score,
+    }
+  }
+}
 
 export const invalidate = () => ({
   type: types.INVALIDATE,
@@ -159,21 +172,6 @@ export const setQuestion = (editorState) => ({
   }
 });
 
-export const syncQuiz = (oldQuizId, newQuizId) =>  ({
-  type: types.SYNC_QUIZ,
-  payload: {
-    oldQuizId,
-    newQuizId,
-  }
-});
-
-export const transformThenAdd = servedQuizes => dispatch => {
-  for (var q of servedQuizes) { 
-    var quiz = utils.convertToReduxFormat(q);
-    dispatch(addQuiz(quiz.slug, { title: quiz.title, problems: quiz.problems}));
-  }
-}
-
 export const setChoice = (choiceId, editorState) => ({
   type: types.SET_CHOICE,
   payload: {
@@ -186,9 +184,7 @@ export const fetchQuizes = () => dispatch => {
   dispatch(requestQuizes());
   return agent.quizes.fetchQuizes()
     .then(res => {
-      console.log(res.body.quizes)
-      dispatch(clearQuizes());
-      dispatch(transformThenAdd(res.body.quizes));
+      dispatch(addQuizList(res.body.quizes));
     })
     .catch( err => console.log(err))
 }
@@ -197,20 +193,19 @@ export const fetchOneQuiz = slug => dispatch => {
   dispatch(requestQuizes());
   return agent.quizes.fetchOneQuiz(slug)
     .then(res => {
-      console.log(res.body.quiz)
-      dispatch(transformThenAdd([res.body.quiz]));
-      dispatch(selectQuiz(res.body.quiz.slug))
+      const quiz = utils.convertToReduxFormat(res.body.quiz);
+      dispatch(addQuiz(quiz));
     })
     .catch( err => console.log(err))
 }
 
 export const fetchMyQuizes = () => dispatch => {
   dispatch(requestQuizes());
-  dispatch(clearQuizes())
+  dispatch(addQuizList([]))
   const token = utils.tokenAuth.get('token');
   agent.setToken(token);
   return agent.quizes.fetchMyQuizes()
-    .then( res => dispatch(transformThenAdd(res.body.quizes)))
+    .then( res => dispatch(addQuizList(res.body.quizes)))
     .catch( err => console.log(err))
 }
 /*
@@ -229,7 +224,6 @@ export const submitQuiz = quiz => dispatch => {
   return agent.quizes.submitQuiz(_quiz)
     .then( res => {
       storage.removeOneDraft();
-      dispatch(syncQuiz('new-quiz', res.body.quiz.slug))
     })
     .catch( err => console.log(err));
 }
@@ -238,7 +232,7 @@ export const submitAnswers = quiz => dispatch => {
   const token = utils.tokenAuth.get('token');
   const answers = utils.extractAnswers(quiz);
   return agent.quizes.submitAnswers(answers)
-    .then(res => console.log(res.body.score))
+    .then(res => dispatch(addScore(res.body.score)))
     .catch(err => console.log(err));
 }
 

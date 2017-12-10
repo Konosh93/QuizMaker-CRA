@@ -14,17 +14,16 @@ import QuizMaker from '../QuizMaker';
 import QuizList from '../QuizList';
 import QuizDrafts from '../QuizDrafts';
 import Positioner from '../Positioner';
+import QuizResult from '../QuizResult';
 
 const Quiz = props => {
   const quizMakerProps = {
-    currentQuizId: props.currentQuizId ,
-    currentQuiz: props.currentQuiz,
+    quiz: props.quiz,
     title: props.title ,
     currentProblemId: props.currentProblemId ,
     question: props.question ,
     choices: props.choices ,
     correct: props.correct ,
-    selectQuiz: props.selectQuiz ,
     addQuiz: props.addQuiz ,
     submitQuiz: props.submitQuiz ,
     invalidate: props.invalidate ,
@@ -41,8 +40,7 @@ const Quiz = props => {
 
   const quizTakerProps = {
     fetchOneQuiz: props.fetchOneQuiz,
-    currentQuizId: props.currentQuizId,
-    currentQuiz: props.currentQuiz,
+    quiz: props.quiz,
     title: props.title,
     currentProblemId: props.currentProblemId,
     question: props.question,
@@ -52,16 +50,20 @@ const Quiz = props => {
     submitAnswers: props.submitAnswers,
     setCurrentProblem: props.setCurrentProblem,
     setCorrect: props.setCorrect,
+    history: props.history,
   }
   const quizListProps = {
     selectQuiz: props.selectQuiz,
-    quizes: props.quizes,
+    quizList: props.quizList,
     fetchQuizes: props.fetchQuizes,
     fetchMyQuizes: props.fetchMyQuizes,
   }
   const quizDraftsProps = {
-    selectQuiz: props.selectQuiz,
     addQuiz: props.addQuiz,
+  }
+  const quizResultProps = {
+    quiz: props.quiz,
+    score: props.score,
   }
   const { width, height } = props;
   return (
@@ -71,11 +73,11 @@ const Quiz = props => {
           <Switch>
             <Route 
               path={`${props.match.url}/list`} 
-              render={othoerProps => <QuizList { ...othoerProps} { ...quizListProps}/>}
+              render={otherProps => <QuizList { ...otherProps} { ...quizListProps}/>}
             />
             <Route 
               path={`${props.match.url}/make`} 
-              render={othoerProps => <QuizMaker { ...othoerProps} { ...quizMakerProps}/>}
+              render={otherProps => <QuizMaker { ...otherProps} { ...quizMakerProps}/>}
             />
             <Route 
               path={`${props.match.url}/take/:slug`}
@@ -84,7 +86,11 @@ const Quiz = props => {
             <Route 
               path={`${props.match.url}/drafts`}
               render={otherProps => <QuizDrafts { ...otherProps} { ...quizDraftsProps} />}
-            />            
+            />
+            <Route 
+              path={`${props.match.url}/result`}
+              render={otherProps => <QuizResult { ...otherProps} { ...quizResultProps} />}
+            />             
           </Switch>
 
         </div>
@@ -93,20 +99,20 @@ const Quiz = props => {
 }
 
 Quiz.propTypes = {
-  currentQuizId: propTypes.string,
-  currentQuiz: propTypes.object,
-  quizes: propTypes.object,
+  quiz: propTypes.object,
+  quizList: propTypes.arrayOf(propTypes.object),
+  score: propTypes.number,
   title: propTypes.string,
   currentProblemId: propTypes.number,
   question: propTypes.object,
   choices: propTypes.object,
   correct: propTypes.string,
-  match: propTypes.object,
+  match: propTypes.object.isRequired,
+  history: propTypes.object.isRequired,
   requestQuizes: propTypes.func.isRequired,
   fetchQuizes: propTypes.func.isRequired, 
   fetchMyQuizes: propTypes.func.isRequired, 
   fetchOneQuiz: propTypes.func.isRequired, 
-  selectQuiz: propTypes.func.isRequired,
   addQuiz: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,
   submitAnswers: propTypes.func.isRequired,

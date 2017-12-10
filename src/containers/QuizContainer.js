@@ -7,16 +7,15 @@ import * as actions from '../actions';
 
 const mapStateToProps = state => {
   const { width, height } = state.get('device');
-  const quiz = state.get('quiz')
-  const { currentQuizId, quizes } = quiz || {};
-  const currentQuiz = (quizes && currentQuizId) ? quizes[currentQuizId] : null;
-  const { title, problems, currentProblemId } = currentQuiz || {};
+  const quizReducer = state.get('quizes')
+  const { quiz, quizList, score } = quizReducer || {};
+  const { title, problems, currentProblemId } = quiz || {};
   const currentProblem = problems ? problems[currentProblemId] : null;
   const { question, choices, correct } = currentProblem || {};
   return {
-    currentQuizId,
-    currentQuiz,
-    quizes,
+    quiz,
+    quizList,
+    score,
     title,
     currentProblemId,
     question,
@@ -33,8 +32,8 @@ const mapDispatchToProps = dispatch => (
     fetchQuizes: () => dispatch(actions.fetchQuizes()),
     fetchMyQuizes: () => dispatch(actions.fetchMyQuizes()),
     fetchOneQuiz: slug => dispatch(actions.fetchOneQuiz(slug)),    
-    selectQuiz: quiz => dispatch(actions.selectQuiz(quiz)),
-    addQuiz: (quiz, data) => dispatch(actions.addQuiz(quiz, data)),
+    addQuizList: quizList => dispatch(actions.addQuizList(quizList)),
+    addQuiz: quiz => dispatch(actions.addQuiz(quiz)),
     submitQuiz: quiz => dispatch(actions.submitQuiz(quiz)),
     submitAnswers: quiz => dispatch(actions.submitAnswers(quiz)),
     invalidate: () => dispatch(actions.invalidate()),
@@ -54,9 +53,9 @@ const mapDispatchToProps = dispatch => (
 const QuizContainer = props => <Quiz { ...props } />
 
 QuizContainer.propTypes = {
-  currentQuizId: propTypes.string,
-  currentQuiz: propTypes.object,
-  quizes: propTypes.object,
+  quiz: propTypes.object,
+  quizlist: propTypes.arrayOf(propTypes.object),
+  score: propTypes.number,
   title: propTypes.string,
   currentProblemId: propTypes.number,
   question: propTypes.object,
@@ -67,8 +66,8 @@ QuizContainer.propTypes = {
   fetchQuizes: propTypes.func.isRequired, 
   fetchMyQuizes: propTypes.func.isRequired, 
   fetchOneQuiz: propTypes.func.isRequired, 
-  selectQuiz: propTypes.func.isRequired,
   addQuiz: propTypes.func.isRequired,
+  addQuizList: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,
   submitAnswers: propTypes.func.isRequired,
   invalidate: propTypes.func.isRequired,
