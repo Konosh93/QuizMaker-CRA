@@ -13,7 +13,7 @@ const QuizList = ({
   fetchMyQuizes
 }) => {
   const ids = Object.keys(quizes);
-  const quizlist = ids.map(id => <Link key={id} to="/quiz/take"><Button  
+  const quizlist = ids.map(id => <Link key={id} to={`/quiz/take/${id}`}><Button  
     handleClick={() => selectQuiz(id)}
     className="quiz-list__button-select">
     {quizes[id].title}</Button></Link>) 

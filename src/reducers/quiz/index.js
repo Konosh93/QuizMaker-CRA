@@ -45,6 +45,7 @@ const quizReducer = (state = initState, action) => {
 
 const initquizState = {
   title: null,
+  slug: null,
   isInvalidated: false,
   isMyQuiz: false,
   problems:{},

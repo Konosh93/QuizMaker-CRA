@@ -18,9 +18,10 @@ class QuizTaker extends React.Component {
   }
 
   componentWillMount(){
-    if (!this.props.currentQuizId) {
-    	this.props.selectQuiz('new-quiz');
-    }
+    const { match, fetchOneQuiz } = this.props;
+    const { params } = match;
+    const { slug } = params;
+    fetchOneQuiz(slug);
   }
 
   componentWillReceiveProps() {

@@ -1,7 +1,6 @@
 var router = require('express').Router();
 var jwt = require('express-jwt');
 var UnauthorizedError = require('express-jwt/lib').UnauthorizedError;
-console.log(UnauthorizedError);
 var secret = require('../../../config').secret;
 
 function fromHeaderOrQuerystring (req) {

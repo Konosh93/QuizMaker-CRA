@@ -40,6 +40,7 @@ const Quiz = props => {
   }
 
   const quizTakerProps = {
+    fetchOneQuiz: props.fetchOneQuiz,
     currentQuizId: props.currentQuizId,
     currentQuiz: props.currentQuiz,
     title: props.title,
@@ -77,7 +78,7 @@ const Quiz = props => {
               render={othoerProps => <QuizMaker { ...othoerProps} { ...quizMakerProps}/>}
             />
             <Route 
-              path={`${props.match.url}/take`}
+              path={`${props.match.url}/take/:slug`}
               render={otherProps => <QuizTaker { ...otherProps} { ...quizTakerProps} />}
             />
             <Route 
@@ -102,6 +103,9 @@ Quiz.propTypes = {
   correct: propTypes.string,
   match: propTypes.object,
   requestQuizes: propTypes.func.isRequired,
+  fetchQuizes: propTypes.func.isRequired, 
+  fetchMyQuizes: propTypes.func.isRequired, 
+  fetchOneQuiz: propTypes.func.isRequired, 
   selectQuiz: propTypes.func.isRequired,
   addQuiz: propTypes.func.isRequired,
   submitQuiz: propTypes.func.isRequired,

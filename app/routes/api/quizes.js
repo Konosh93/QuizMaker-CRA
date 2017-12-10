@@ -7,17 +7,26 @@ var auth = require('./middleware/auth');
 var mongoose = require('mongoose');
 
 router.get('/me', auth.required, getMyQuizes, errHandler);
+router.get('/one/:slug', getOneQuiz, errHandler);
 router.get('/', getAllQuizes, errHandler);
 router.post('/', auth.required, postQuiz, errHandler);
 router.post('/answers', postQuizAnswers, errHandler);
 
 
-function errHandler(err, req, res, next) {
+function errHandler(err, req, res, next) {console.log(req.body)
 	if (err) {
 		return res.status(500).json({errors: { message: "sorry, something unexpected happened"}});
 	}
 }
 
+
+function getOneQuiz(req, res) {console.log(req.params.slug)
+	Quiz.findOne({ slug: req.params.slug }, (err, quiz) => {
+		if (err) return res.status(500).json({ errors: {message: "Something is wrong with our server"}});
+		if (!quiz) return res.status(422).json({ errors: { message: "No quiz found"}});
+		return res.status(200).json({ quiz });
+	});
+}
 
 function getAllQuizes(req, res){
 	Quiz.find({}, (err, quizes) => {
@@ -62,12 +71,12 @@ function putQuiz(req, res) {
 		_quiz.problems = problems
 		return _quiz.save(function(err){
 			if (err) return standardErrResponse(res, 'quiz could not be saved');
-			return res.status(200).json({message: 'success', quiz: {data: _quiz, id: _quiz._id}});
+			return res.status(200).json({ quiz: _quiz });
 	})
 	});
 }
 
-function postQuiz(req, res) {
+function postQuiz(req, res) {console.log(req.body.quiz._id)
 	const id = req.body.quiz._id;
 	if (id !== 'new-quiz') {
 		return putQuiz(req, res);
@@ -93,7 +102,7 @@ function postQuiz(req, res) {
 			if (err) {
 				return standardErrResponse(res, 'quiz could not be saved');
 			}
-			return res.status(200).json({message: 'success', quiz: {data: _quiz, id: _quiz._id}});
+			return res.status(200).json({ quiz: _quiz });
 		})
 		
 	});

@@ -69,8 +69,8 @@ const createEditorState = raw => {
 
 
 export const convertToReduxFormat = quiz => {
-  const { _id, title, problems } = quiz;
-  if (!_id || !title || !problems) return;
+  const { _id, title, problems, slug } = quiz;
+  if (!_id || !title || !problems, !slug) return;
   let _problems = problems.map(p => {
     if (!p.question || !p.choices) return;
     return { 
@@ -81,7 +81,7 @@ export const convertToReduxFormat = quiz => {
     }
   }); 
   _problems = convertArrayToObject(_problems);
-  return { _id, title, problems: _problems }
+  return { _id, title, slug, problems: _problems }
 
 }
 

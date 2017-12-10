@@ -7,6 +7,7 @@ export const CLEAR_QUIZES = 'CLEAR_QUIZES';
 export const ADD_QUIZ = 'ADD_QUIZ';
 export const SELECT_QUIZ = 'SELECT_QUIZ';
 export const SET_TITLE = 'SET_TITLE';
+export const SET_SLUG = 'SET_SLUG';
 export const INVALIDATE = 'INVALIDATE';
 export const PERMIT_EDIT = 'PERMIT_EDIT';
 export const ADD_PROBLEM = 'ADD_PROBLEM';

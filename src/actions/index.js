@@ -170,7 +170,7 @@ export const syncQuiz = (oldQuizId, newQuizId) =>  ({
 export const transformThenAdd = servedQuizes => dispatch => {
   for (var q of servedQuizes) { 
     var quiz = utils.convertToReduxFormat(q);
-    dispatch(addQuiz(quiz._id, { title: quiz.title, problems: quiz.problems}));
+    dispatch(addQuiz(quiz.slug, { title: quiz.title, problems: quiz.problems}));
   }
 }
 
@@ -184,9 +184,23 @@ export const setChoice = (choiceId, editorState) => ({
 /* actual */
 export const fetchQuizes = () => dispatch => {
   dispatch(requestQuizes());
-  dispatch(clearQuizes())
   return agent.quizes.fetchQuizes()
-    .then( res => dispatch(transformThenAdd(res.body.quizes)))
+    .then(res => {
+      console.log(res.body.quizes)
+      dispatch(clearQuizes());
+      dispatch(transformThenAdd(res.body.quizes));
+    })
+    .catch( err => console.log(err))
+}
+
+export const fetchOneQuiz = slug => dispatch => {
+  dispatch(requestQuizes());
+  return agent.quizes.fetchOneQuiz(slug)
+    .then(res => {
+      console.log(res.body.quiz)
+      dispatch(transformThenAdd([res.body.quiz]));
+      dispatch(selectQuiz(res.body.quiz.slug))
+    })
     .catch( err => console.log(err))
 }
 
@@ -215,7 +229,7 @@ export const submitQuiz = quiz => dispatch => {
   return agent.quizes.submitQuiz(_quiz)
     .then( res => {
       storage.removeOneDraft();
-      dispatch(syncQuiz('new-quiz', res.body.quiz._id))
+      dispatch(syncQuiz('new-quiz', res.body.quiz.slug))
     })
     .catch( err => console.log(err));
 }
