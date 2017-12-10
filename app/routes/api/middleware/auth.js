@@ -13,22 +13,23 @@ function fromHeaderOrQuerystring (req) {
   return null;
 }
 
-var required = router.use(jwt({
-	secret,
-	userProperty: 'user',
-	getToken: fromHeaderOrQuerystring,
-}), (req, res, next) => {
-	if (req.user.exp < Date.now()) {
-	   return next(new UnauthorizedError('Token-expired', { message: 'Token is is expired' }));
-	}
-	next();
-});
+const auth = {
+	required : router.use(jwt({
+		secret,
+		userProperty: 'user',
+		getToken: fromHeaderOrQuerystring,
+		}), (req, res, next) => {
+			if (req.user.exp < Date.now()) {
+	   			return next(new UnauthorizedError('Token-expired', { message: 'Token is is expired' }));
+			}
+			return next();
+		}),
+	optional: jwt({
+		secret,
+		credentialsRequired: false,
+		userProperty: 'user',
+		getToken: fromHeaderOrQuerystring,
+	}),
+}
 
-var optional = router.use(jwt({
-	secret,
-	userProperty: 'user',
-	getToken: fromHeaderOrQuerystring,
-	credentialsRequired: false,
-}));
-
-module.exports = {required, optional};
+module.exports = auth;

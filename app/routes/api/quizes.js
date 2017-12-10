@@ -2,6 +2,7 @@ var utils = require('../../utils');
 var passport = require('passport');
 var User = require('../../models/user.js');
 var Quiz = require('../../models/quiz.js');
+var Trial = require('../../models/trial.js');
 var router = require('express').Router();
 var auth = require('./middleware/auth');
 var mongoose = require('mongoose');
@@ -10,8 +11,7 @@ router.get('/me', auth.required, getMyQuizes, errHandler);
 router.get('/one/:slug', getOneQuiz, errHandler);
 router.get('/', getAllQuizes, errHandler);
 router.post('/', auth.required, postQuiz, errHandler);
-router.post('/answers', postQuizAnswers, errHandler);
-
+router.post('/answers', auth.optional, postQuizAnswers, errHandler);
 
 function errHandler(err, req, res, next) {
 	if (err) {
@@ -136,6 +136,7 @@ function postQuizAnswers(req, res) {
 				return acc;
 			}
 		}, 0);	
+		recordScore(req, score);
 		return res.status(200).json({ score });	
 	});
 }
@@ -143,5 +144,19 @@ function postQuizAnswers(req, res) {
 const standardErrResponse = (res, message) => (
 	res.status(422).json({errors: { message }})
 );
+
+const recordScore = (req, score) => {
+	const userId = req.user ? req.user.id : null;
+	const { _id } = req.body.answers;
+	const trial = new Trial({
+		quiz: mongoose.Types.ObjectId(_id),
+		user: userId ? mongoose.Types.ObjectId(userId) : null,
+		score,
+	});
+	trial.save(err => {
+		if (err) return console.log(err);
+	});
+}
+
 
 module.exports = router;

@@ -231,6 +231,7 @@ export const submitQuiz = quiz => dispatch => {
 export const submitAnswers = quiz => dispatch => {
   const token = utils.tokenAuth.get('token');
   const answers = utils.extractAnswers(quiz);
+  agent.setToken(token);
   return agent.quizes.submitAnswers(answers)
     .then(res => dispatch(addScore(res.body.score)))
     .catch(err => console.log(err));
