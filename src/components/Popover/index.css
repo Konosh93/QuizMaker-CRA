@@ -12,11 +12,6 @@
 }
 
 .popover__panel {
-  position: absolute;
-  left: 0;
-  top: 100%;
-  min-width: 50px;
-  margin-top: 4px;
   z-index: 501;
 }
 

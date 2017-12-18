@@ -1,6 +1,9 @@
 .choice-popover-panel {
-	box-sizing: border-box;
- margin-top: 10px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 50px;
+  margin-top: 4px;
 }
 
 .choice-popover-panel__button {

@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import 'draft-js/dist/Draft.css';
 import style from './index.css';
+import Popover from '../Popover';
 import { convertToRaw, convertFromRaw, Editor, EditorState, RichUtils } from 'draft-js';
 
 class RichEditor extends React.Component {
@@ -65,14 +66,19 @@ class RichEditor extends React.Component {
 
     return (
       <div className="RichEditor-root">
-        <BlockStyleControls
-          editorState={editorState}
-          onToggle={this.toggleBlockType}
-        />
-        <InlineStyleControls
-          editorState={editorState}
-          onToggle={this.toggleInlineStyle}
-        />
+        <Popover>
+          <div role="button" className="text-editor__popover-trigger">Trigger</div>
+          <div role="button" className="text-editor__popover-panel">
+            <BlockStyleControls
+              editorState={editorState}
+              onToggle={this.toggleBlockType}
+            />
+            <InlineStyleControls
+              editorState={editorState}
+              onToggle={this.toggleInlineStyle}
+            />
+          </div>
+        </Popover>
         <div className={className} onClick={this.focus}>
           <Editor
             blockStyleFn={getBlockStyle}
