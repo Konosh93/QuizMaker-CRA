@@ -8,11 +8,11 @@ const NavButton = ({
   uri,
 }) => (
   <div className="nav-item">
+  <Link to={uri}>
     <div className="nav-button">
-      <Link to={uri}>
-        <div>{children}</div>
-      </Link>
+      {children}
     </div>
+    </Link>
   </div>
 );
 
