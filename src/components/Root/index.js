@@ -10,6 +10,7 @@ import NavContainer from '../../containers/NavContainer';
 import QuizContainer from '../../containers/QuizContainer';
 import Profile from '../../components/Profile';
 import AuthContainer from '../../containers/AuthContainer';
+import HomeContainer from '../../containers/HomeContainer';
 
 const Root = ({
   user,
@@ -19,6 +20,7 @@ const Root = ({
     <Router>
       <div>
         <Route path="/" component={withRouter(NavContainer)} />
+        <Route exact path="/" component={withRouter(HomeContainer)} />
         <Route path="/quiz" component={withRouter(QuizContainer)} />
         <Route path="/profile" component={withRouter(Profile)} />
         <Route path="/auth" component={withRouter(AuthContainer)} />
