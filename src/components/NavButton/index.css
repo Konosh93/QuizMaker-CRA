@@ -22,12 +22,12 @@
 	background-color:#ddd;
 }
 
-.nav-button a, .nav-buttona a:visited {
+a .nav-button , a:visited .nav-button {
 	color:#00aced;
 	text-decoration: none;
 }
 
-.nav-button a:hover, .nav-buttona a:active{
+a:hover .nav-button,a:active .nav-button{
 	color:#00aced;
 	text-decoration: none;
 	font-weight: 700;
