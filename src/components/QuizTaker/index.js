@@ -41,6 +41,7 @@ class QuizTaker extends React.Component {
     e.preventDefault();
     if (!t) return;
     this.props.setCorrect(c);
+    setTimeout(() => this.moveToNextProblem(e), 1000);
   }
 
 
