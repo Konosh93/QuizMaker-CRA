@@ -1,3 +1,28 @@
+.home {
+  background-color: #1ea04e;
+  color: #fff;
+  padding-top: 70px;
+}
+
+.home__title {
+  font-size: 45px;
+  font-weight: 1000;
+  text-align: center;
+  margin: 100px 0px 10px 0px;
+
+}
+
+.home__description {
+  margin: 0 auto;
+  width: 400px;
+  text-align: center;
+  margin-bottom: 100px;
+  font-size: 20px;
+}
+.home__message {
+  padding: 5px 60px 100px 60px;
+}
+
 .home__p {
   line-height: 30px;
 }

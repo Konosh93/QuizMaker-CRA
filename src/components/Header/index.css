@@ -1,0 +1,19 @@
+.header {
+ box-sizing: border-box;
+ background-color: #1ea04e;
+ position: fixed;
+ top: 0px;
+ left: 0px;
+ right: 0px;
+ z-index: 20;
+}
+
+.header__logo {
+  float: left;
+  width: 80px;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+}

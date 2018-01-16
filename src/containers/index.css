@@ -1,4 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
 .container {
 	font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+	box-sizing: border-box;
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	top: 0px;
 }
