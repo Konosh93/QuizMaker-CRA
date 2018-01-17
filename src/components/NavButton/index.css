@@ -21,12 +21,3 @@
   border-radius: 2px;
 }
 
-a .nav-button , a:visited .nav-button {
-	color:#fff;
-	text-decoration: none;
-}
-
-a:hover .nav-button,a:active .nav-button{
-	color:#fff;
-	text-decoration: none;
-}	

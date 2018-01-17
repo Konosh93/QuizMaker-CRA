@@ -11,6 +11,12 @@ export const setSize = (width, height) => ({
   },
 })
 
+export const setScrollValue = scrollY => ({
+  type: types.SET_SCROLL_VALUE,
+  payload: {
+    scrollY,
+  }
+});
 
 export const beginAuth = ()  => ({
   type: types.BEGIN_AUTH,

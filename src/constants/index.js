@@ -1,4 +1,5 @@
 export const RESIZE = 'RESIZE';
+export const SET_SCROLL_VALUE = 'SET_SCROLL_VALUE';
 export const AUTHENTICATE = 'AUTHENTICATE';
 export const LOGOUT = 'LOGOUT';
 export const BEGIN_AUTH = 'BEGIN_AUTH';

@@ -4,10 +4,9 @@ import style from './index.css';
 import NavButton from '../NavButton';
 import {Link} from 'react-router-dom';
 
-const Header = ({ user, width }) => {
-  console.log(width);
+const Header = ({ user, width, scrollY }) => {
   return (
-    <div className="header" style={{width}}>
+    <div className={`header ${scrollY > 90 && 'header--scrolled'}`} style={{width}}>
       <Link to="/"><img src={require('../../assets/logo.png')} className="header__logo" /></Link>
       <NavButton uri="/">Home</NavButton>
       <NavButton uri="/quiz">Quizzes</NavButton>
@@ -18,5 +17,7 @@ const Header = ({ user, width }) => {
 
 Header.propTypes = {
   user: PropTypes.object,
+  width: PropTypes.number.isRequired,
+  scrollY: PropTypes.number.isRequired,
 }
 export default Header;

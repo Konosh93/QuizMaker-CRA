@@ -8,12 +8,34 @@
  z-index: 20;
 }
 
+.header--scrolled {
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  transition: 0.3s ease;
+  color: #1ea04e;
+}
+
 .header__logo {
   float: left;
   width: 80px;
   padding: 5px;
 }
 
-a {
-  text-decoration: none;
+
+.header a , .header a:visited {
+	color:#fff;
+	text-decoration: none;
+}
+
+.header a:hover, .header a:active {
+	color:#fff;
+	text-decoration: none;
+}	
+
+.header--scrolled a , .header--scrolled a:visited {
+	color:#1ea04e;
+}
+
+.header--scrolled a:hover, .header--scrolled a:active {
+	color:#1ea04e;
 }

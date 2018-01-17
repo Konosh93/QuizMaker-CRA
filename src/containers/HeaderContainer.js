@@ -9,6 +9,7 @@ const mapStateToProps = state => {
   return {
     user: state.get('auth').user,
     width: state.get('device').width,
+    scrollY: state.get('device').scrollY,
   }
 }
 
@@ -18,5 +19,6 @@ const NavContainer = props => <Header { ...props } />
 NavContainer.propTypes = {
   user: propTypes.object,
   width: propTypes.number.isRequired,
+  scrollY: propTypes.number.isRequired,
 };
 export default connect(mapStateToProps)(NavContainer);
