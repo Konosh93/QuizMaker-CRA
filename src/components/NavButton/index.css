@@ -4,7 +4,7 @@
 	width: 70px;
 }
 .nav-item:last-child {
-	float: right;
+  float: right;
 }
 .nav-button {
 	box-sizing: border-box;
