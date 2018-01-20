@@ -67,34 +67,38 @@ const Quiz = props => {
   }
   const { width, height } = props;
   return (
-    <Positioner width={width} height={height}>
       <div className="quiz">
-        <QuizNavigation match={props.match}/>
-          <Switch>
-            <Route 
-              path={`${props.match.url}/list`} 
-              render={otherProps => <QuizList { ...otherProps} { ...quizListProps}/>}
-            />
-            <Route 
-              path={`${props.match.url}/make`} 
-              render={otherProps => <QuizMaker { ...otherProps} { ...quizMakerProps}/>}
-            />
-            <Route 
-              path={`${props.match.url}/take/:slug`}
-              render={otherProps => <QuizTaker { ...otherProps} { ...quizTakerProps} />}
-            />
-            <Route 
-              path={`${props.match.url}/drafts`}
-              render={otherProps => <QuizDrafts { ...otherProps} { ...quizDraftsProps} />}
-            />
-            <Route 
-              path={`${props.match.url}/result`}
-              render={otherProps => <QuizResult { ...otherProps} { ...quizResultProps} />}
-            />             
-          </Switch>
-
+        <div className="quiz__intro">
+          <div className="quiz__intro__image"><img src={require('../../assets/logo.png')} className="quiz__intro__logo" /></div>
+          <div className="quiz__intro__text">You can use quiz-survey to create great looking quizes and surveys</div>
         </div>
-      </Positioner>
+        <div className="quiz__body">
+          <QuizNavigation match={props.match}/>
+            <Switch>
+              <Route 
+                path={`${props.match.url}/list`} 
+                render={otherProps => <QuizList { ...otherProps} { ...quizListProps}/>}
+              />
+              <Route 
+                path={`${props.match.url}/make`} 
+                render={otherProps => <QuizMaker { ...otherProps} { ...quizMakerProps}/>}
+              />
+              <Route 
+                path={`${props.match.url}/take/:slug`}
+                render={otherProps => <QuizTaker { ...otherProps} { ...quizTakerProps} />}
+              />
+              <Route 
+                path={`${props.match.url}/drafts`}
+                render={otherProps => <QuizDrafts { ...otherProps} { ...quizDraftsProps} />}
+              />
+              <Route 
+                path={`${props.match.url}/result`}
+                render={otherProps => <QuizResult { ...otherProps} { ...quizResultProps} />}
+              />             
+            </Switch>
+  
+          </div>
+        </div>
   );
 }
 

@@ -66,13 +66,20 @@
 }
 
 .text-editor__popover-trigger {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
 
+.text-editor__popover-trigger:hover {
+  color: #1ea04e;
+  font-weight: 700;
 }
 
 .text-editor__popover-panel {
-  position: absolute;
-  top: -50%;
-  width: 100%;
+
+
+  display: inline-block;
   background-color: #1C1A1A;
   border-radius: 3px;
   color: white; 

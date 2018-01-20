@@ -11,6 +11,7 @@ import QuizContainer from '../../containers/QuizContainer';
 import Profile from '../../components/Profile';
 import AuthContainer from '../../containers/AuthContainer';
 import HomeContainer from '../../containers/HomeContainer';
+import FooterContainer from '../../containers/FooterContainer';
 
 const Root = ({
   user,
@@ -24,6 +25,7 @@ const Root = ({
         <Route path="/quiz" component={withRouter(QuizContainer)} />
         <Route path="/profile" component={withRouter(Profile)} />
         <Route path="/auth" component={withRouter(AuthContainer)} />
+        <Route path="/" component={withRouter(FooterContainer)} />
       </div>
     </Router>
   );

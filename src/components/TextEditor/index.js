@@ -66,8 +66,10 @@ class RichEditor extends React.Component {
 
     return (
       <div className="RichEditor-root">
-        <Popover>
-          <div role="button" className="text-editor__popover-trigger">Trigger</div>
+        <Popover className="text-editor__popover">
+          <div role="button" className="text-editor__popover-trigger">
+            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </div>
           <div role="button" className="text-editor__popover-panel">
             <BlockStyleControls
               editorState={editorState}

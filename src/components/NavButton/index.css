@@ -17,7 +17,7 @@
 }
 
 .nav-button:hover {
-  border-bottom: 4px solid #ddd;
-  transition: .2 ease;
+  border-bottom: 0.2px solid #ddd;
+  transition: .5 ease;
 }
 

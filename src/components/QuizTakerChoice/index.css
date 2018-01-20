@@ -4,7 +4,6 @@
 }
 
 .quiz-taker-choice--selected {
-	background-color: green;
-	opacity: 0.9;
+	background-color: #1ea04e;
 	color: white;
 }
