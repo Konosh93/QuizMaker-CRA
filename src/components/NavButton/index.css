@@ -1,6 +1,6 @@
 .nav-item{
 	display: inline-block;
-	height: 50px;
+	height: 100%;
 	width: 70px;
 }
 .nav-item:last-child {
@@ -17,7 +17,7 @@
 }
 
 .nav-button:hover {
-  background-color:#23ba5b;
-  border-radius: 2px;
+  border-bottom: 4px solid #ddd;
+  transition: .2 ease;
 }
 
