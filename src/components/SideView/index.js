@@ -8,7 +8,7 @@ const SideView = props => {
     <div className="side-view">
       <p>Welcome to the login/registeration page</p>
       <p>Registeration is required in order to make quizes and save them to your account.</p>
-      <p>Use this form to login or or sign up if you don't have an account</p>
+      <p>Use this form to login or sign up if you don't have an account</p>
     </div>
   );
 }

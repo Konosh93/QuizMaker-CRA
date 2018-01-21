@@ -73,7 +73,6 @@ const Quiz = props => {
           <div className="quiz__intro__text">You can use quiz-survey to create great looking quizes and surveys</div>
         </div>
         <div className="quiz__body">
-          <QuizNavigation match={props.match}/>
             <Switch>
               <Route 
                 path={`${props.match.url}/list`} 

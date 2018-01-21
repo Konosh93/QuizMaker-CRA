@@ -7,7 +7,7 @@ const NavButton = (props) => (
   <div className="quiz-nav-item">
     <div className="quiz-nav-button">
       <Link to={props.uri}>
-        <div>{props.text}</div>
+        <div role="button">{props.text}</div>
       </Link>
     </div>
   </div>

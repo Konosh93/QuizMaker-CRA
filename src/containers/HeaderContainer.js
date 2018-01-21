@@ -14,11 +14,11 @@ const mapStateToProps = state => {
 }
 
 
-const NavContainer = props => <Header { ...props } />
+const HeaderContainer = props => <Header { ...props } />
 
-NavContainer.propTypes = {
+HeaderContainer.propTypes = {
   user: propTypes.object,
   width: propTypes.number.isRequired,
   scrollY: propTypes.number.isRequired,
 };
-export default connect(mapStateToProps)(NavContainer);
+export default connect(mapStateToProps)(HeaderContainer);
