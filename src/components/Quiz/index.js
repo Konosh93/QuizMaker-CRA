@@ -72,6 +72,9 @@ const Quiz = props => {
           <div className="quiz__intro__image"><img src={require('../../assets/logo.png')} className="quiz__intro__logo" /></div>
           <div className="quiz__intro__text">You can use quiz-survey to create great looking quizes and surveys</div>
         </div>
+        <div className="quiz__inspiration">
+          <img src="https://elearningindustry.com/wp-content/uploads/2014/04/ed0b0c31c412f7d67bd39119503bb394.jpg" />
+        </div>
         <div className="quiz__body">
             <Switch>
               <Route 

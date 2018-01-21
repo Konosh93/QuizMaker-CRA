@@ -32,8 +32,18 @@
 	width: 100%;
 }
 
+.quiz__inspiration {
+	box-sizing: border-box;
+	padding: 50px;
+	background-color: #BB5143;
+}
+
+.quiz__inspiration img {
+	display: block;
+	margin: 0 auto;
+}
+
 .quiz__body {
 	margin: 0 auto;
 	width: 80%;
-	padding: 50px 0 50px 0;
 }
