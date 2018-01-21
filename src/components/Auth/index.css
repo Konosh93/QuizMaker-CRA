@@ -1,3 +1,15 @@
+.auth {
+  box-sizing: border-box;
+  padding: 100px 0 100px 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.auth__items {
+  box-sizing: border-box;
+
+}
+
 .auth__logout-button {
 	margin: 0 auto;
 	display: block;
@@ -8,4 +20,10 @@
 	color: white;
 	background-color: #00aced; /*twitter*/
 	line-height: 60px;
+}
+
+.auth__item {
+  box-sizing: border-box;
+  width: 50%;
+  display: inline-block;
 }

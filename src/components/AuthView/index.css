@@ -1,0 +1,11 @@
+.auth-view__logout-button {
+	margin: 0 auto;
+	display: block;
+	height: 60px;
+	font-weight: 1000;
+	font-size: 1.5em;
+	text-align: center;
+	color: white;
+	background-color: #00aced; /*twitter*/
+	line-height: 60px;
+}

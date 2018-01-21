@@ -1,6 +1,12 @@
 .quiz-taker-choice__button {
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: row;
+	border-left: 2px solid #1ea04e;
+}
+
+.quiz-taker-choice__button:hover {
+	border-left: 20px solid #1ea04e;
 }
 
 .quiz-taker-choice--selected {

@@ -30,10 +30,13 @@
 
 .quiz-taker__problems-count {
 	box-sizing: border-box;
-	margin: 0 auto;
-	margin-bottom: 20px;
-	font-size: 2em;
-	font-weight: 600;
+	font-size: 20px;
+	font-weight: 1000;
+	width: 30px;
+	height: 30px;
+	border-radius: 3px;
+	background-color: #1ea04e;
+	color: white;
 }
 
 .quiz-taker__question {
@@ -45,6 +48,8 @@
 	font-size: 1.5em;
 	font-weight: 600;
 	text-align: left;
+	border: none;
+	color: #1ea04e;
 }
 
 .quiz-taker__choices {

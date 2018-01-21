@@ -1,13 +1,10 @@
 .login-form {
   box-sizing: border-box;
   margin: 0 auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
   border: 1px solid #ddd;
   padding: 50px 20px 50px 20px;
   border-radius: 5px;
   text-align: center;
-  width: 40%;
   background-color: #C5EFF7;
 }
 

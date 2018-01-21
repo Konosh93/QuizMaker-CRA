@@ -72,7 +72,7 @@ class QuizTaker extends React.Component {
         <div className="quiz-taker__title">{title}</div>
         <div className="quiz-taker__body">
           <div className="quiz-taker__problems-count">{currentProblemId+1}</div>
-          <TextDisplay 
+          <TextDisplay className="quiz-taker__question"
             editorState={question}
           />
           <QuizTakerChoices 

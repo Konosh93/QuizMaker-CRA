@@ -1,7 +1,6 @@
 .RichDisplay-root {
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid #ddd;
   font-size: 14px;
   padding: 5px;
   text-align: left;
