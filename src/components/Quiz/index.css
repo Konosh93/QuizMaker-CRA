@@ -4,7 +4,7 @@
 }
 
 .quiz__intro {
-	padding:  170px 50px 70px 50px;
+	padding:  100px 50px 70px 50px;
 	display: table;
 	background-color: #000000;
 }
@@ -20,7 +20,7 @@
 	display: table-cell;
 	width: 65%;
 	height: 100%;
-	font-size: 25px;
+	font-size: 35px;
 	vertical-align: middle;
 	font-weight: 700;
 	padding: 20px;

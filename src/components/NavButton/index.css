@@ -9,10 +9,10 @@
 .nav-button {
 	box-sizing: border-box;
 	text-align: center;
-	line-height: 50px;
+	line-height: 40px;
 	margin: 5px;
 	transition: 0.2s ease;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 600;
 }
 

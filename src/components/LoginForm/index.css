@@ -1,26 +1,31 @@
 .login-form {
-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
   border: 1px solid #ddd;
-  padding: 15px 10px 0px 10px;
+  padding: 50px 20px 50px 20px;
   border-radius: 5px;
   text-align: center;
-  width: 100%;
+  width: 40%;
+  background-color: #C5EFF7;
+}
 
-  position: absolute;
-  top: 50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+.login-form__header {
+	color: #ff5151;
+	font-size: 12px;
 }
 
 .login-form__button {
 	display: block;
 	margin: 0 auto;
-	width: 200px;
-	height: 50px;
-	line-height: 50px;
-	font-weight: 1000;
-	font-size: 2em;
+	width: 100px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: 700;
+	font-size: 12px;
 	text-align: center;
 	color: white;
-	background-color: #00aced; /*twitter*/
+	background-color: #1ea04e; 
+	border-radius: 2px;
 }

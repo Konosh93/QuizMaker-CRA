@@ -10,15 +10,15 @@
 
 .header--scrolled {
   border-bottom: 1px solid #ddd;
-  background-color: #fcfcfc;
+  background-color: #1ea04e;
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s ease;
-  color: #1ea04e;
+  color: #fff;
 }
 
 .header__logo {
   float: left;
-  width: 80px;
+  width: 40px;
   padding: 5px;
 }
 
@@ -34,10 +34,10 @@
 }	
 
 .header--scrolled a , .header--scrolled a:visited {
-	color:#1ea04e;
+  color: #fff;
 
 }
 
 .header--scrolled a:hover, .header--scrolled a:active {
-	color:#1ea04e;
+  color: #fff;
 }

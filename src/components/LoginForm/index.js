@@ -26,28 +26,27 @@ const LoginForm = props => {
       type="text"
       name="name"
       value={data.name}
-      placeholder="Enter your name ..."
+      placeholder="Name"
       handleChange={handleChange}
     />
   ) : null;
 
   return (
-    <Positioner width={width} height={height}>
     <div className="login-form">
-      <span>{header}</span>
+      <span className="login-form__header">{header}</span>
       {nameField}
       <TextInput
         type="email"
         name="email"
         value={data.email}
-        placeholder="Enter your email ..."
+        placeholder="Email"
         handleChange={handleChange}
       />
       <TextInput
         type="password"
         name="password"
         value={data.password}
-        placeholder="Enter your password ..."
+        placeholder="Password"
         handleChange={handleChange}
       />
       <Button
@@ -57,7 +56,7 @@ const LoginForm = props => {
       </Button>
       <hr />
         <Button handleClick={toggleAction}>{toggleText}</Button>
-    </div></Positioner>
+    </div>
   );
 };
 
