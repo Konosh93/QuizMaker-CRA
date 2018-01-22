@@ -4,20 +4,19 @@ import style from './index.css';
 import NavButton from '../NavButton';
 import Popover from '../Popover';
 import QuizNavPanel from '../QuizNavPanel';
-import MobileHeader from '../MobileHeader';
 import {Link} from 'react-router-dom';
 
 const Header = ({ user, width, scrollY }) => {
   //below className="nav-item" should be corrected to nav-button in all nav-buttons
-  if (width <= 480) return <MobileHeader user={user} width={width} scrollY={scrollY} />
   return (
-    <div className={`header ${scrollY > 90 && 'header--scrolled'}`} style={{width}}>
-      <Link to="/"><img src={require('../../assets/logo.png')} className="header__logo" /></Link>
-      <NavButton uri="/">Home</NavButton>
-      <Popover className="nav-item"> 
-        <div className="nav-button">Quizzes <i className="fa fa-caret-down" aria-hidden="true" /></div>
-        <QuizNavPanel /> 
+    <div className={`mobile-header ${scrollY > 90 && 'mobile-header--scrolled'}`} style={{width}}>
+      <Popover className="mobile-header__popover  mobile-header__item"> 
+        <div className="mobile-header__button"><i className="fa fa-bars" aria-hidden="true" /></div>
+        <QuizNavPanel width={width}/> 
       </Popover>
+      <div className="mobile-header__logo mobile-header__item">
+        <Link to="/"><img src={require('../../assets/logo.png')} /></Link>
+      </div>
       <NavButton uri="/auth"><i className="fa fa-user fa-2x" aria-hidden="true" /> {/*user? user.name : 'there!'*/}</NavButton>
     </div>
   )

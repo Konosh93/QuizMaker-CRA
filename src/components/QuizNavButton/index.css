@@ -19,12 +19,12 @@
 	border-right: 1px solid white;
 }
 
-.quiz-nav-button a, .quiz-nav-button a:visited {
+.quiz-nav-item .quiz-nav-button a, .quiz-nav-item .quiz-nav-button a:visited {
 	color:#828f91;
 	text-decoration: none;
 }
 
-.quiz-nav-button a:hover, .quiz-nav-button a:active{
+.quiz-nav-item .quiz-nav-button a:hover, .quiz-nav-item .quiz-nav-button a:active{
 	color:#616A6B;
 	text-decoration: none;
 	font-weight: 700;
