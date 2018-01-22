@@ -1,0 +1,14 @@
+.ad-side-view {
+  box-sizing: border-box;
+  height: 100%;
+  font-size: 12px;
+  text-align: center;
+  padding: 30px;
+  
+}
+
+.ad-side-view p {
+  box-sizing: border-box;
+  border-left: 5px solid #1ea04e;
+  padding: 10px;
+}

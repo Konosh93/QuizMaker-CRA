@@ -3,47 +3,8 @@
 	margin: 0 auto;
 }
 
-.quiz__intro {
-	padding:  100px 50px 70px 50px;
-	display: table;
-	background-color: #000000;
-}
-
-.quiz__intro__image {
-	box-sizing: border-box;
-	display: table-cell;
-	width: 35%;
-}
-
-.quiz__intro__text {
-	box-sizing: border-box;
-	display: table-cell;
-	width: 65%;
-	height: 100%;
-	font-size: 35px;
-	vertical-align: middle;
-	font-weight: 700;
-	padding: 20px;
-	text-align: center;
-	color: #fff;
-}
-
-.quiz__intro__logo {
-	width: 100%;
-}
-
-.quiz__inspiration {
-	box-sizing: border-box;
-	padding: 50px;
-	background-color: #BB5143;
-}
-
-.quiz__inspiration img {
-	display: block;
-	margin: 0 auto;
-}
-
 .quiz__body {
 	margin: 0 auto;
 	width: 80%;
+	padding: 100px 0 100px 0;
 }

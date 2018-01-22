@@ -7,7 +7,7 @@
 
 .auth__items {
   box-sizing: border-box;
-
+  display: flex;
 }
 
 .auth__logout-button {
@@ -26,4 +26,5 @@
   box-sizing: border-box;
   width: 50%;
   display: inline-block;
+  flex: 1;
 }

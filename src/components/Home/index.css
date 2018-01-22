@@ -1,7 +1,6 @@
 .home {
   background-color: #1ea04e;
   color: #fff;
-  padding-top: 70px;
 }
 
 .home__title {
@@ -28,4 +27,49 @@
 
 .home__p {
   line-height: 30px;
+}
+
+.home__intro {
+  padding:  100px 50px 70px 50px;
+  display: table;
+  background-color: #000000;
+}
+
+.home__intro__image {
+  box-sizing: border-box;
+  display: table-cell;
+  width: 35%;
+}
+
+.home__intro__image img {
+  width: 100%;
+}
+
+.home__intro__text {
+  box-sizing: border-box;
+  display: table-cell;
+  width: 65%;
+  height: 100%;
+  font-size: 35px;
+  vertical-align: middle;
+  font-weight: 700;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.home__intro__logo {
+  width: 100%;
+}
+
+.home__inspiration {
+  box-sizing: border-box;
+  padding: 50px;
+  background-color: #BB5143;
+}
+
+.home__inspiration img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
 }

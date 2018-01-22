@@ -13,7 +13,7 @@ import QuizTaker from '../QuizTaker';
 import QuizMaker from '../QuizMaker';
 import QuizList from '../QuizList';
 import QuizDrafts from '../QuizDrafts';
-import Positioner from '../Positioner';
+import AdView from '../AdView';
 import QuizResult from '../QuizResult';
 
 const Quiz = props => {
@@ -68,13 +68,6 @@ const Quiz = props => {
   const { width, height } = props;
   return (
       <div className="quiz">
-        <div className="quiz__intro">
-          <div className="quiz__intro__image"><img src={require('../../assets/logo.png')} className="quiz__intro__logo" /></div>
-          <div className="quiz__intro__text">You can use quiz-survey to create great looking quizes and surveys</div>
-        </div>
-        <div className="quiz__inspiration">
-          <img src="https://elearningindustry.com/wp-content/uploads/2014/04/ed0b0c31c412f7d67bd39119503bb394.jpg" />
-        </div>
         <div className="quiz__body">
             <Switch>
               <Route 
@@ -98,8 +91,8 @@ const Quiz = props => {
                 render={otherProps => <QuizResult { ...otherProps} { ...quizResultProps} />}
               />             
             </Switch>
-  
           </div>
+          <AdView width={props.width}/>
         </div>
   );
 }

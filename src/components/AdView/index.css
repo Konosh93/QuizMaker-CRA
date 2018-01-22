@@ -1,0 +1,57 @@
+.ad-view {
+  background-color: #1ea04e;
+  color: #fff;
+}
+
+.ad-view__intro {
+  background-color: #000000;
+  display: flex;
+  padding: 20px 10px 20px 10px;
+}
+
+.ad-view__intro__image {
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.ad-view__intro__image img {
+  width: 100%;
+}
+
+.ad-view__intro__side-view {
+  box-sizing: border-box;
+  width: 65%;
+  height: 100%;
+  font-size: 25px;
+  vertical-align: middle;
+  font-weight: 700;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  flex: 1;
+}
+
+.ad-view__intro__side-view__text {
+  
+}
+
+.ad-view__intro__logo {
+  width: 100%;
+}
+
+.ad-view__inspiration {
+  box-sizing: border-box;
+  background-color: #BB5143;
+  display: flex;
+}
+
+.ad-view__inspiration__img {
+  flex: 1;
+}
+.ad-view__inspiration img {
+  width: 100%;
+}
+
+.ad-view__inspiration__side-view {
+  flex: 1;
+}
