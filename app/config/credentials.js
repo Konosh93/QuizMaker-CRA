@@ -7,6 +7,6 @@ module.exports = {
 	linkedin: {
 		clientID: '81kdcib3urq1qj',
 		clientSecret: 'NkzfXm4WbvuarjVm',
-		callbackURL: 'http://127.0.0.1:3001/api/accounts/auth/linkedin',
+		callbackURL: 'https://quiz-survey.herokuapp.com/api/accounts/auth/linkedin',
 	},	
 }
