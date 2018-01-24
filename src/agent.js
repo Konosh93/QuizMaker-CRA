@@ -30,8 +30,8 @@ const requests = {
 const accounts = {
   login: (email, password) => (
     requests.post('/api/accounts/login', { user: { email, password } })),
-  recall: () => (
-    requests.get('/api/accounts/recall')),
+  recall: type => (
+    requests.get(`/api/accounts/recall/${type}`)),
   signup: (name, email, password) => (
     requests.post('/api/accounts/signup', { user: { name, email, password } })),
 };

@@ -19,6 +19,15 @@ const Auth = props => {
       <div className="auth__items">
         <div className="auth__item">
           <AuthView {...props} />
+            <div className="auth__social">
+              <a href={`https://www.linkedin.com/oauth/v2/authorization?`+
+                       `response_type=code` +
+                       `&client_id=81kdcib3urq1qj` +
+                       `&redirect_uri=http%3A%2F%2F127.0.0.1%3A3001%2Fapi%2Faccounts%2Fauth%2Flinkedin` +
+                       `&state=987654321` +
+                       `&scope=r_basicprofile`}>
+              Linkedin</a>
+            </div>
         </div>
         {sideView}
       </div>

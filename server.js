@@ -4,7 +4,8 @@ var express = require('express'),
  	bodyParser = require('body-parser'),
  	morgan = require('morgan'),
  	cors = require('cors'),
- 	mongoose = require('mongoose');
+ 	mongoose = require('mongoose'),
+ 	cookieParser = require('cookie-parser');
 
 let MONGODB_URI;
 if (process.env.NODE_ENV !== 'production') {
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 mongoose.connect(MONGODB_URI, {useMongoClient: true});
-
+console.log(MONGODB_URI)
 var app = express();
 //if(config.util.getEnv('NODE_ENV') !== 'test') {
 //    //use morgan to log at command line
@@ -26,11 +27,12 @@ app.use(morgan('combined')); //'combined' outputs the Apache style LOGs
 app.use(cors())
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(cookieParser())
 app.use(express.static(__dirname + '/build'));
 
 
 app.get('/:gate*?', function(req,res,next){
-  if (req.params.gate !== 'api') {console.log(req.params.gate)
+  if (req.params.gate !== 'api') {
   	return res.sendFile(__dirname + '/build/index.html');
   }
   return next();

@@ -1,14 +1,26 @@
 var passport = require('passport');
-var User = require('../../models/user.js')
+var User = require('../../models/user.js');
+var SocailUser = require('../../models/socialUser.js');
 var router = require('express').Router();
 var auth = require('./middleware/auth');
+var url = require('url');
+var path = require('path');
 
-
+router.get('/auth/linkedin', linkedinAuth, errHandler);
 
 router.post('/signup', signup, errHandler);
 router.post('/login', login, errHandler);
-router.get('/recall', auth.required, tokenExpiry, recall,errHandler);
+router.get('/recall/:type', auth.required, tokenExpiry, recall,errHandler);
 router.get('/profile', auth.required, profile, errHandler);
+
+function linkedinAuth (req, res, next) {
+	passport.authenticate('linkedin', { state: '987654321' }, function (err, user, info) {
+		var token = user.toAuthJSON().token;
+		res.cookie('social-token', token, {maxAge:600000});
+		return res.sendFile(path.resolve('build/index.html'));
+	})(req,res,next);
+}
+
 
 function signup(req,res,next){
 	if (!req.body.user.name) {
@@ -27,7 +39,7 @@ function signup(req,res,next){
 		}else{
 			return res.status(201).json({user: user.toAuthJSON()});
 		}
-	})(req,res,next)
+	})(req,res,next);
 }
 
 function login(req,res,next){
@@ -54,8 +66,10 @@ function errHandler (err, req, res, next) {
 }
 
 function recall(req, res, next){
+  const Model = req.params.type === 'social-token'? SocailUser : User;
+  console.log(req.params.type, '+++++++++++++++++++++++')
   process.nextTick( function(){
-    User.findOne({'_id': req.user.id}, (mongoErr, user) => {
+    Model.findOne({'_id': req.user.id}, (mongoErr, user) => {
     	if (mongoErr) next(err);
     	if (!user) {
     		return res.status(422).json({errors: {message: "you are currently not logged in"}});
@@ -65,6 +79,7 @@ function recall(req, res, next){
   });
 
 }
+
 
 function tokenExpiry(req, res, next){
 	if (req.user && req.user.exp) {

@@ -37,9 +37,16 @@ export const login = (email, password) => dispatch => {
 
 export const recallUser = () => dispatch => {
   dispatch(beginAuth());
-  const token = utils.tokenAuth.get('token');
-  agent.setToken(token);
-  agent.accounts.recall()
+  let token = utils.tokenAuth.get('token');
+  let type = 'token';
+  if (token) {
+    agent.setToken(token);  
+  } else {
+    token = utils.tokenAuth.get('social-token');
+    agent.setToken(token);
+    type = 'social-token';
+  }
+  agent.accounts.recall(type)  
     .then(res => dispatch(setAuthStatus(res.body.user, null)))
     .catch(err => {
       if (err.response) {
